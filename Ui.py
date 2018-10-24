@@ -1,9 +1,8 @@
 # coding:UTF-8
 import maya.cmds as mc
-import RenderSetting
 
-def develop():
-    reload(RenderSetting)
+# def develop():
+#     reload(RenderSetting)
 
 def ui():
     if mc.window('win', ex=True) == True:

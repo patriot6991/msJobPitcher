@@ -2,7 +2,7 @@ import maya.cmds as mc
 import maya.mel as mel
 import json
 
-path = r'C:\Users\user\Desktop\hoge.json'
+path = r'\\172.29.44.4\cg\ms06\msJobPitcher\renderSettings\msTest.json'
 
 def jsonRead():
     global dec
