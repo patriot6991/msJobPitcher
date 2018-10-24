@@ -1,5 +1,9 @@
 # coding:UTF-8
 import maya.cmds as mc
+import RenderSetting
+
+def develop():
+    reload(RenderSetting)
 
 def ui():
     if mc.window('win', ex=True) == True:
@@ -11,7 +15,7 @@ def ui():
     mc.radioCollection()
     c1 = mc.checkBox(l='New Scene', v=0)
     c2 = mc.checkBox(l='Stage', v=1)
-    f2 = mc.textField('f2', w=500, h=20, text='\\172.29.44.4\cg\ms06\renderProj\scenes\stage\Shibuya.evening.v1.mb')
+    f2 = mc.textField('f2', w=500, h=20, text=r'\\172.29.44.4\cg\ms06\renderProj\scenes\stage\Shibuya.evening.v1.mb')
     b2 = mc.button(l='Brows', w=50, h=20)
     sp1 = mc.separator(w=680)
     c3 = mc.checkBox(l='Camera', v=1)
