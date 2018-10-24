@@ -1,6 +1,9 @@
 # coding:UTF-8
 import maya.cmds as mc
 
+# def develop():
+#     reload(RenderSetting)
+
 def ui():
     if mc.window('win', ex=True) == True:
         mc.deleteUI('win', window=True)
@@ -11,7 +14,7 @@ def ui():
     mc.radioCollection()
     c1 = mc.checkBox(l='New Scene', v=0)
     c2 = mc.checkBox(l='Stage', v=1)
-    f2 = mc.textField('f2', w=500, h=20, text='\\172.29.44.4\cg\ms06\renderProj\scenes\stage\Shibuya.evening.v1.mb')
+    f2 = mc.textField('f2', w=500, h=20, text=r'\\172.29.44.4\cg\ms06\renderProj\scenes\stage\Shibuya.evening.v1.mb')
     b2 = mc.button(l='Brows', w=50, h=20)
     sp1 = mc.separator(w=680)
     c3 = mc.checkBox(l='Camera', v=1)
@@ -51,13 +54,16 @@ def ui():
     c14 = mc.checkBox(l='Render Settings', v=1)
     f14 = mc.textField('f14', w=500, h=20, text='')
     b14 = mc.button(l='Brows', w=50, h=20)
-    c15 = mc.checkBox(l='Deadline Settings', v=0)
+    c15 = mc.checkBox(l='AOVs Settings', v=1)
     f15 = mc.textField('f15', w=500, h=20, text='')
     b15 = mc.button(l='Brows', w=50, h=20)
+    c16 = mc.checkBox(l='Deadline Settings', v=0)
+    f16 = mc.textField('f16', w=500, h=20, text='')
+    b16 = mc.button(l='Brows', w=50, h=20)
     t1 = mc.text(l='shotID :')
-    f16 = mc.textField('f16', w=100, h=20, text='sXXcXX')
-    b16 = mc.button(l='Set shotID', w=220, h=40)
-    b17 = mc.button(l='Build Render Scene', w=450, h=70)
+    f17 = mc.textField('f17', w=100, h=20, text='sXXcXX')
+    b17 = mc.button(l='Set shotID', w=220, h=40)
+    b18 = mc.button(l='Build Render Scene', w=450, h=70)
 
     mc.formLayout(form, edit=True, attachForm=[
         (c1, 'top', 10), (c1, 'left', 10),
@@ -105,10 +111,13 @@ def ui():
         (c15, 'top', 385), (c15, 'left', 10),
         (f15, 'top', 385), (f15, 'left', 130),
         (b15, 'top', 385), (b15, 'left', 640),
-        (t1, 'top', 413), (t1, 'left', 80),
+        (c16, 'top', 410), (c16, 'left', 10),
         (f16, 'top', 410), (f16, 'left', 130),
-        (b16, 'top', 440), (b16, 'left', 10),
-        (b17, 'top', 410), (b17, 'left', 240)
+        (b16, 'top', 410), (b16, 'left', 640),
+        (t1, 'top', 438), (t1, 'left', 80),
+        (f17, 'top', 435), (f17, 'left', 130),
+        (b17, 'top', 465), (b17, 'left', 10),
+        (b18, 'top', 435), (b18, 'left', 240)
     ])
 
     mc.showWindow(win)
