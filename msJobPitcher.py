@@ -1,6 +1,10 @@
 # coding:UTF-8
-
 import Ui
 
+def develop():
+    reload(Ui)
+
 def execution():
-    p1 = Ui.Ui(20, 30, 40)
+    develop()
+
+    Ui.ui()
