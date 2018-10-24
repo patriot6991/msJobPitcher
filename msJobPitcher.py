@@ -1,5 +1,6 @@
-import maya.cmds as mc
+# coding:UTF-8
+
+import Ui
 
 def execution():
-    print 'hoge'
-    print 'fuga'
+    p1 = Ui.Ui(20, 30, 40)
