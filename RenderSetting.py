@@ -65,11 +65,10 @@ def common():
     mc.setAttr('defaultRenderGlobals.modifyExtension', 0)
 
     #renderableCamera
-    mc.setAttr('perspShape.renderable', 0)
+    mc.setAttr('perspShape.renderable', 1)
     mc.setAttr('topShape.renderable', 0)
     mc.setAttr('frontShape.renderable', 0)
     mc.setAttr('sideShape.renderable', 0)
-    mc.setAttr('cameraShape1.renderable', 1)
     mc.setAttr('perspShape.mask', 1)
     mc.setAttr('perspShape.depth', 0)
 
@@ -151,9 +150,3 @@ def arnoldRenderer():
     mc.setAttr('defaultArnoldRenderOptions.textureMaxOpenFiles', dec['defaultArnoldRenderOptions.textureMaxOpenFiles'])
     mc.setAttr('defaultArnoldRenderOptions.textureDiffuseBlur', dec['defaultArnoldRenderOptions.textureDiffuseBlur'])
     mc.setAttr('defaultArnoldRenderOptions.textureSpecularBlur', dec['defaultArnoldRenderOptions.textureSpecularBlur'])
-
-
-# win = mc.window(t='BtoTtest', widthHeight=(200,30))
-# mc.columnLayout()
-# mc.button(l='BtoT', c='jsonRead()')
-# mc.showWindow(win)
