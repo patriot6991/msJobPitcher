@@ -1,7 +1,7 @@
 import maya.cmds as mc
 import os.path
 
-def getFileInfo():
+def importScenes():
 	fPath = mc.textField(text1, q=True, text=True)
 	ftype = ""
 
@@ -16,23 +16,15 @@ def getFileInfo():
 		ftype = "mayaBinary"
 
 	elif ext == ".fbx":
-		ftype = "FBX"
+		ftype = "Fbx"
 
-	elif ext == "obj":
+	elif ext == ".obj":
 		ftype = "OBJ"
 
 	else:
 		print "Please .ma,.mb,.obj,.fbx"
 
-	print root
-	print ext
-	print fName
-	print nSpace
-	print ftype
-	print fPath
 
-def importFiles():
-	getFileInfo()
 	mc.file("{}".format(fPath), i=True, typ="{}".format(ftype), iv=True, ra=True, ns="{}".format(nSpace), op="v=0;", pr=True)
 
 
@@ -44,6 +36,6 @@ win = mc.window('testWin', t='testWin', widthHeight=(200,100))
 mc.columnLayout(adj=True)
 
 text1 = mc.textField('text1', w=130, pht='filepath')
-mc.button(w=50, h=30, l='Run', c='importFiles()')
+mc.button(w=50, h=30, l='Run', c='importScenes()')
 
 mc.showWindow(win)
