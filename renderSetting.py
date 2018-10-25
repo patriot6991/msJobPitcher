@@ -2,7 +2,7 @@ import maya.cmds as mc
 import maya.mel as mel
 import json
 
-path = 'C:\Users\Gasta\Documents\maya\Presets\msTest.json'
+path = r'\\172.29.44.4\cg\ms06\msJobPitcher\renderSettings\msTest.json'
 
 def jsonRead():
     global dec
@@ -150,9 +150,3 @@ def arnoldRenderer():
     mc.setAttr('defaultArnoldRenderOptions.textureMaxOpenFiles', dec['defaultArnoldRenderOptions.textureMaxOpenFiles'])
     mc.setAttr('defaultArnoldRenderOptions.textureDiffuseBlur', dec['defaultArnoldRenderOptions.textureDiffuseBlur'])
     mc.setAttr('defaultArnoldRenderOptions.textureSpecularBlur', dec['defaultArnoldRenderOptions.textureSpecularBlur'])
-
-
-win = mc.window(t='BtoTtest', widthHeight=(200,30))
-mc.columnLayout()
-mc.button(l='BtoT', c='jsonRead()')
-mc.showWindow(win)
