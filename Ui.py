@@ -1,15 +1,33 @@
 # coding:UTF-8
 import maya.cmds as mc
+import RenderSetting
+import logging
+import myLogger
 
-# def develop():
-#     reload(RenderSetting)
+
+def develop():
+    reload(RenderSetting)
+    reload(myLogger)
+
+
+def jobRenderSettings(self):
+    RenderSetting.jsonRead()
+    logging.debug('jobRenderSetting')
+
 
 def ui():
     if mc.window('win', ex=True) == True:
         mc.deleteUI('win', window=True)
 
+    develop()
+
+
     win = mc.window('win', title='mcJobPitcher', widthHeight=(300, 700))
     form = mc.formLayout()
+
+    # my logger
+    ml = myLogger.MyLogger(mc)
+    cLog = ml.createCheckbox(1)
 
     mc.radioCollection()
     c1 = mc.checkBox(l='New Scene', v=0)
@@ -64,6 +82,8 @@ def ui():
     f17 = mc.textField('f17', w=100, h=20, text='sXXcXX')
     b17 = mc.button(l='Set shotID', w=220, h=40)
     b18 = mc.button(l='Build Render Scene', w=450, h=70)
+    b19 = mc.button(l='test', w=450, h=70, c=jobRenderSettings)
+
 
     mc.formLayout(form, edit=True, attachForm=[
         (c1, 'top', 10), (c1, 'left', 10),
@@ -117,7 +137,9 @@ def ui():
         (t1, 'top', 438), (t1, 'left', 80),
         (f17, 'top', 435), (f17, 'left', 130),
         (b17, 'top', 465), (b17, 'left', 10),
-        (b18, 'top', 435), (b18, 'left', 240)
+        (b18, 'top', 435), (b18, 'left', 240),
+        (b19, 'top', 520), (b19, 'left', 10),
+        (cLog, 'top', 520), (cLog, 'right', 10),
     ])
 
     mc.showWindow(win)

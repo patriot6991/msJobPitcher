@@ -1,10 +1,13 @@
 import maya.cmds as mc
 import maya.mel as mel
 import json
+import logging
 
 path = r'\\172.29.44.4\cg\ms06\msJobPitcher\renderSettings\msTest.json'
 
+
 def jsonRead():
+    logging.debug('jsonRead')
     global dec
     get = open(path)
     a = json.load(get)
@@ -69,6 +72,7 @@ def common():
     mc.setAttr('topShape.renderable', 0)
     mc.setAttr('frontShape.renderable', 0)
     mc.setAttr('sideShape.renderable', 0)
+    mc.setAttr('perspShape.renderable', 1)
     mc.setAttr('perspShape.mask', 1)
     mc.setAttr('perspShape.depth', 0)
 
