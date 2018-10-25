@@ -1,11 +1,13 @@
 import maya.cmds as mc
 import maya.mel as mel
 import json
+import logging
 
 path = r'\\172.29.44.4\cg\ms06\msJobPitcher\renderSettings\msTest.json'
 
 
 def jsonRead():
+    logging.debug('jsonRead')
     global dec
     get = open(path)
     a = json.load(get)

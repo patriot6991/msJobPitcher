@@ -1,8 +1,9 @@
 import maya.cmds as mc
 import os.path
-
+import logging
 
 def importScenes():
+    logging.debug('importScens')
     fPath = ''
     ftype = ""
 
