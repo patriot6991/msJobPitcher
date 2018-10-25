@@ -1,5 +1,11 @@
-import maya.cmds as mc
+# coding:UTF-8
+import Ui
+
+def develop():
+    reload(Ui)
 
 def execution():
-    print 'hoge'
-    print 'fuga'
+    develop()
+
+
+    Ui.ui()
