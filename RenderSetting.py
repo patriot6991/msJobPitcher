@@ -4,6 +4,7 @@ import json
 
 path = r'\\172.29.44.4\cg\ms06\msJobPitcher\renderSettings\msTest.json'
 
+
 def jsonRead():
     global dec
     get = open(path)
@@ -69,7 +70,7 @@ def common():
     mc.setAttr('topShape.renderable', 0)
     mc.setAttr('frontShape.renderable', 0)
     mc.setAttr('sideShape.renderable', 0)
-    mc.setAttr('cameraShape1.renderable', 1)
+    mc.setAttr('perspShape.renderable', 1)
     mc.setAttr('perspShape.mask', 1)
     mc.setAttr('perspShape.depth', 0)
 
