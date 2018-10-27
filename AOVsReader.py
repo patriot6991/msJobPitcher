@@ -2,7 +2,8 @@ import maya.cmds as mc
 import json
 import logging
 
-path = ''
+path = r'\\172.29.44.4\cg\ms06\msJobPitcher\AOVs\aov.json'
+
 
 def AOVsRead():
     logging.debug('AOVsRead')
@@ -10,8 +11,8 @@ def AOVsRead():
     a = json.load(get)
     b = a['arnold']
 
-    #AOVs
-    for z  in b.keys():
+    # AOVs
+    for z in b.keys():
         if z == 'outputs':
             y = b[z]
             cnt = len(y)

@@ -1,13 +1,15 @@
 # coding:UTF-8
 import maya.cmds as mc
-import RenderSetting
 import logging
 import myLogger
+import RenderSetting
+import AOVsReader
 
 
 def develop():
-    reload(RenderSetting)
     reload(myLogger)
+    reload(RenderSetting)
+    reload(AOVsReader)
 
 
 def jobRenderSettings(self):
@@ -15,12 +17,16 @@ def jobRenderSettings(self):
     logging.debug('jobRenderSetting')
 
 
+def jobAOVsSetting(self):
+    AOVsReader.AOVsRead()
+    logging.debug('jobAOVsSetting')
+
+
 def ui():
     if mc.window('win', ex=True) == True:
         mc.deleteUI('win', window=True)
 
     develop()
-
 
     win = mc.window('win', title='mcJobPitcher', widthHeight=(300, 700))
     form = mc.formLayout()
@@ -82,8 +88,7 @@ def ui():
     f17 = mc.textField('f17', w=100, h=20, text='sXXcXX')
     b17 = mc.button(l='Set shotID', w=220, h=40)
     b18 = mc.button(l='Build Render Scene', w=450, h=70)
-    b19 = mc.button(l='test', w=450, h=70, c=jobRenderSettings)
-
+    b19 = mc.button(l='test', w=450, h=70, c=jobAOVsSetting)
 
     mc.formLayout(form, edit=True, attachForm=[
         (c1, 'top', 10), (c1, 'left', 10),
