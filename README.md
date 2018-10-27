@@ -1,5 +1,13 @@
 # msJobPitcher
-MS用のレンダーシーン構築＆レンダージョブのサブミットツール
+MS用のレンダーシーン構築＆レンダージョブのサブミットツールです。
+
+起動コマンド
+```python
+import msJobPitcher
+msJobPitcher.execution()
+```
+
+チェックボックスを付けたジョブが上から順に実行されます。
 
 
 # myLogger
