@@ -4,12 +4,14 @@ import logging
 import myLogger
 import RenderSetting
 import AOVsReader
+import browsFile
 
 
 def develop():
     reload(myLogger)
     reload(RenderSetting)
     reload(AOVsReader)
+    reload(browsFile)
 
 
 def jobNewScenes(self):
@@ -92,6 +94,7 @@ def jobBuildRenderScene(self):
 
 def jobTest(self):
     logging.debug('test')
+    print browsFile.search()
 
 
 def browsStage(self):
