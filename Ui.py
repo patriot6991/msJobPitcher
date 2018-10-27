@@ -90,6 +90,62 @@ def jobBuildRenderScene(self):
 def jobTest(self):
     logging.debug('test')
 
+def jobExtra3(self):
+    logging.debug('jobExtra3')
+
+
+def jobExtra4(self):
+    logging.debug('jobExtra4')
+
+
+def jobExtra5(self):
+    logging.debug('jobExtra5')
+
+
+def jobExtra6(self):
+    logging.debug('jobExtra6')
+
+
+def jobExtra7(self):
+    logging.debug('jobExtra7')
+
+
+def jobExtra8(self):
+    logging.debug('jobExtra8')
+
+
+def jobExtra9(self):
+    logging.debug('jobExtra9')
+
+
+def jobRenderSettings(self):
+    logging.debug('jobRenderSetting')
+    RenderSetting.jsonRead()
+
+
+def jobAOVsSetting(self):
+    logging.debug('jobAOVsSetting')
+
+
+def jobSubmitDeadline(self):
+    logging.debug('jobSubmitDeadline')
+
+
+def jobSetShotID(self):
+    logging.debug('jobSetShotID')
+    global msJobPitcherShotID
+    msJobPitcherShotID = mc.textField('f17', q=True, text=True)
+    logging.debug('shotID is %s' %(msJobPitcherShotID))
+
+
+def jobBuildRenderScene(self):
+    logging.debug('jobBuildRenderScene')
+    jobSetShotID(self)
+
+
+def jobTest(self):
+    logging.debug('test')
+
 
 def ui():
     logging.debug('shou UI')
@@ -159,7 +215,6 @@ def ui():
     b17 = mc.button(l='Set shotID', w=220, h=40, c=jobSetShotID)
     b18 = mc.button(l='Build Render Scene', w=450, h=70, c=jobBuildRenderScene)
     b19 = mc.button(l='test', w=450, h=70, c=jobTest)
-
 
     mc.formLayout(form, edit=True, attachForm=[
         (c1, 'top', 10), (c1, 'left', 10),
