@@ -1,13 +1,15 @@
 # coding:UTF-8
 import maya.cmds as mc
-import RenderSetting
 import logging
 import myLogger
+import RenderSetting
+import AOVsReader
 
 
 def develop():
-    reload(RenderSetting)
     reload(myLogger)
+    reload(RenderSetting)
+    reload(AOVsReader)
 
 
 def jobNewScenes(self):
@@ -26,6 +28,7 @@ def jobImportCamera(self):
 def jobImportAnimation(self):
     logging.debug('jobImportAnimation')
 
+
 def jobExtra1(self):
     logging.debug('jobExtra1')
 
@@ -33,62 +36,6 @@ def jobExtra1(self):
 def jobEctra2(self):
     logging.debug('jobExtra2')
 
-
-def jobExtra3(self):
-    logging.debug('jobExtra3')
-
-
-def jobExtra4(self):
-    logging.debug('jobExtra4')
-
-
-def jobExtra5(self):
-    logging.debug('jobExtra5')
-
-
-def jobExtra6(self):
-    logging.debug('jobExtra6')
-
-
-def jobExtra7(self):
-    logging.debug('jobExtra7')
-
-
-def jobExtra8(self):
-    logging.debug('jobExtra8')
-
-
-def jobExtra9(self):
-    logging.debug('jobExtra9')
-
-
-def jobRenderSettings(self):
-    logging.debug('jobRenderSetting')
-    RenderSetting.jsonRead()
-
-
-def jobAOVsSetting(self):
-    logging.debug('jobAOVsSetting')
-
-
-def jobSubmitDeadline(self):
-    logging.debug('jobSubmitDeadline')
-
-
-def jobSetShotID(self):
-    logging.debug('jobSetShotID')
-    global msJobPitcherShotID
-    msJobPitcherShotID = mc.textField('f17', q=True, text=True)
-    logging.debug('shotID is %s' %(msJobPitcherShotID))
-
-
-def jobBuildRenderScene(self):
-    logging.debug('jobBuildRenderScene')
-    jobSetShotID(self)
-
-
-def jobTest(self):
-    logging.debug('test')
 
 def jobExtra3(self):
     logging.debug('jobExtra3')
