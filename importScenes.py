@@ -3,9 +3,10 @@ import os.path
 import logging
 import maya.mel as mel
 
+
 def importScenes():
     logging.debug('importScens')
-    fPath = mc.textField(text1, q=True, text=True)
+    fPath = r''
     fPath = r"{}".format(fPath)
     ftype = ""
 
@@ -36,10 +37,4 @@ def importScenes():
 
 if mc.window('testWin', exists=True):
     mc.deleteUI('testWin')
-win = mc.window('testWin', t='testWin', widthHeight=(200,100))
-mc.columnLayout(adj=True)
 
-test1 = mc.textField('text1',w=130, pht='filepath')
-mc.button(w=50, h=30, l='Run', c='importScenes()')
-
-mc.showWindow(win)
