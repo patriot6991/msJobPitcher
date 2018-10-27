@@ -26,6 +26,7 @@ def jobImportCamera(self):
 def jobImportAnimation(self):
     logging.debug('jobImportAnimation')
 
+
 def jobExtra1(self):
     logging.debug('jobExtra1')
 
@@ -89,6 +90,66 @@ def jobBuildRenderScene(self):
 
 def jobTest(self):
     logging.debug('test')
+
+
+def browsStage(self):
+    logging.debug('browsStage')
+
+
+def browsCamera(self):
+    logging.debug('browsCamera')
+
+
+def browsAnimation(self):
+    logging.debug('browsAnimation')
+
+
+def browsExtra1(self):
+    logging.debug('browsExtra1')
+
+
+def browsExtra2(self):
+    logging.debug('browsExtra2')
+
+
+def browsExtra3(self):
+    logging.debug('browsExtra3')
+
+
+def browsExtra4(self):
+    logging.debug('browsExtra4')
+
+
+def browsExtra5(self):
+    logging.debug('browsExtra5')
+
+
+def browsExtra6(self):
+    logging.debug('browsExtra6')
+
+
+def browsExtra7(self):
+    logging.debug('browsExtra7')
+
+
+def browsExtra8(self):
+    logging.debug('browsExtra8')
+
+
+def browsExtra9(self):
+    logging.debug('browsExtra9')
+
+
+def browsRenderSettings(self):
+    logging.debug('browsRenderSettings')
+
+
+def browsAOVsSettings(self):
+    logging.debug('browsAOVsSettings')
+
+
+def browsDeadlineSettings(self):
+    logging.debug('browsDeadlineSettings')
 
 
 def ui():
