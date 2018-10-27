@@ -13,7 +13,7 @@ def importScenes():
     fName = os.path.basename(fPath)
     root, ext = os.path.splitext(fPath)
     nSpace = fName.replace(ext, "")
-    fbxFPath = fPath.replace("\\","/")
+    fbxFPath = fPath.replace("\\", "/")
 
     if ext == ".ma":
         ftype = "mayaAscii"
@@ -33,8 +33,3 @@ def importScenes():
 
     mc.file("{}".format(fPath), i=True, typ="{}".format(ftype), iv=True, ra=True, ns="{}".format(nSpace), op="v=0;",
             pr=True)
-
-
-if mc.window('testWin', exists=True):
-    mc.deleteUI('testWin')
-

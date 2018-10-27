@@ -12,17 +12,90 @@ def develop():
     reload(AOVsReader)
 
 
+def jobNewScenes(self):
+    logging.debug('jobNewScenes')
+    mc.file(f=True, new=True)
+
+
+def jobOpenStage(self):
+    logging.debug('jobOpenStage')
+
+
+def jobImportCamera(self):
+    logging.debug('jobImportCamera')
+
+
+def jobImportAnimation(self):
+    logging.debug('jobImportAnimation')
+
+
+def jobExtra1(self):
+    logging.debug('jobExtra1')
+
+
+def jobEctra2(self):
+    logging.debug('jobExtra2')
+
+
+def jobExtra3(self):
+    logging.debug('jobExtra3')
+
+
+def jobExtra4(self):
+    logging.debug('jobExtra4')
+
+
+def jobExtra5(self):
+    logging.debug('jobExtra5')
+
+
+def jobExtra6(self):
+    logging.debug('jobExtra6')
+
+
+def jobExtra7(self):
+    logging.debug('jobExtra7')
+
+
+def jobExtra8(self):
+    logging.debug('jobExtra8')
+
+
+def jobExtra9(self):
+    logging.debug('jobExtra9')
+
+
 def jobRenderSettings(self):
-    RenderSetting.jsonRead()
     logging.debug('jobRenderSetting')
+    RenderSetting.jsonRead()
 
 
 def jobAOVsSetting(self):
-    AOVsReader.AOVsRead()
     logging.debug('jobAOVsSetting')
 
 
+def jobSubmitDeadline(self):
+    logging.debug('jobSubmitDeadline')
+
+
+def jobSetShotID(self):
+    logging.debug('jobSetShotID')
+    global msJobPitcherShotID
+    msJobPitcherShotID = mc.textField('f17', q=True, text=True)
+    logging.debug('shotID is %s' %(msJobPitcherShotID))
+
+
+def jobBuildRenderScene(self):
+    logging.debug('jobBuildRenderScene')
+    jobSetShotID(self)
+
+
+def jobTest(self):
+    logging.debug('test')
+
+
 def ui():
+    logging.debug('shou UI')
     if mc.window('win', ex=True) == True:
         mc.deleteUI('win', window=True)
 
@@ -37,7 +110,7 @@ def ui():
 
     mc.radioCollection()
     c1 = mc.checkBox(l='New Scene', v=0)
-    c2 = mc.checkBox(l='Stage', v=1)
+    c2 = mc.checkBox(l='Open Stage', v=1)
     f2 = mc.textField('f2', w=500, h=20, text=r'\\172.29.44.4\cg\ms06\renderProj\scenes\stage\Shibuya.evening.v1.mb')
     b2 = mc.button(l='Brows', w=50, h=20)
     sp1 = mc.separator(w=680)
@@ -86,9 +159,9 @@ def ui():
     b16 = mc.button(l='Brows', w=50, h=20)
     t1 = mc.text(l='shotID :')
     f17 = mc.textField('f17', w=100, h=20, text='sXXcXX')
-    b17 = mc.button(l='Set shotID', w=220, h=40)
-    b18 = mc.button(l='Build Render Scene', w=450, h=70)
-    b19 = mc.button(l='test', w=450, h=70, c=jobAOVsSetting)
+    b17 = mc.button(l='Set shotID', w=220, h=40, c=jobSetShotID)
+    b18 = mc.button(l='Build Render Scene', w=450, h=70, c=jobBuildRenderScene)
+    b19 = mc.button(l='test', w=450, h=70, c=jobTest)
 
     mc.formLayout(form, edit=True, attachForm=[
         (c1, 'top', 10), (c1, 'left', 10),
