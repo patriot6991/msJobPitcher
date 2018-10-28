@@ -3,6 +3,7 @@ import Ui
 import logging
 import maya.mel as mel
 import myLogger
+import maya.cmds as mc
 
 
 def develop():
@@ -12,8 +13,13 @@ def develop():
 
 def execution():
     develop()
+
+    a = myLogger.MyLogger(mc=mc)
+    a.changeToDebug()
+
     logging.debug('excution msJobPitcher')
 
     mel.eval('setProject "//172.29.44.4/cg/ms06/renderProJ" ;')
 
-    Ui.ui()
+    b = Ui.UiClass()
+    b.ui()
