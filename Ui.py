@@ -5,6 +5,7 @@ import myLogger
 import RenderSetting
 import AOVsReader
 import browsFile
+import createRenderNode
 
 
 class UiClass(object):
@@ -16,6 +17,7 @@ class UiClass(object):
         reload(RenderSetting)
         reload(AOVsReader)
         reload(browsFile)
+        reload(createRenderNode)
 
     def jobNewScenes(self, *args):
         logging.debug('jobNewScenes')
@@ -59,9 +61,11 @@ class UiClass(object):
 
     def jobRenderSettings(self, *args):
         logging.debug('jobRenderSetting')
+        createRenderNode.create()
         RenderSetting.jsonRead()
 
     def jobAOVsSetting(self, *args):
+        createRenderNode.create()
         logging.debug('jobAOVsSetting')
 
     def jobSubmitDeadline(self, *args):
@@ -75,6 +79,7 @@ class UiClass(object):
 
     def jobBuildRenderScene(self, *args):
         logging.debug('jobBuildRenderScene')
+
         self.jobSetShotID(self)
 
         if mc.checkBox('c1', q=True, v=True) == True:
