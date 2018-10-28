@@ -19,7 +19,7 @@ def execution():
 
     logging.debug('excution msJobPitcher')
 
-    mel.eval('setProject "//172.29.44.4/cg/ms06/renderProJ" ;')
+    mel.eval('setProject "//172.29.44.4/cg/ms06/renderProj" ;')
 
     b = Ui.UiClass()
     b.ui()

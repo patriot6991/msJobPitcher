@@ -1,5 +1,6 @@
 # coding:UTF-8
 import maya.cmds as mc
+import os
 import logging
 import myLogger
 import RenderSetting
@@ -12,6 +13,9 @@ class UiClass(object):
     def __init__(self):
         self.develop()
         self.shotID = ''
+        self.proj_path = r'\\172.29.44.4\cg\ms06\renderProj'
+        self.cam_path = ''
+        self.anim_path = ''
 
     def develop(self, *args):
         reload(myLogger)
@@ -75,7 +79,13 @@ class UiClass(object):
     def jobSetShotID(self, *args):
         logging.debug('jobSetShotID')
         self.shotID = mc.textField('f17', q=True, text=True)
-        logging.debug('shotID is %s' % (self.shotID))
+        logging.debug('shotID is %s' % self.shotID)
+
+        self.cam_path = os.path.join(self.proj_path, 'scenes', 'cam', '%s.cam.v1.fbx' %(self.shotID))
+        mc.textField('f3', e=True, tx=self.cam_path)
+
+        self.anim_path = os.path.join(self.proj_path, 'scenes', '%s.render.v1.ma' %(self.shotID))
+        mc.textField('f4', e=True, tx=self.anim_path)
 
     def jobBuildRenderScene(self, *args):
         logging.debug('jobBuildRenderScene')
