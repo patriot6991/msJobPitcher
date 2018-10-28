@@ -80,6 +80,51 @@ class UiClass(object):
         if mc.checkBox('c1', q=True, v=True) == True:
             self.jobNewScenes()
 
+        if mc.checkBox('c2', q=True, v=True) == True:
+            self.jobOpenStage()
+
+        if mc.checkBox('c3', q=True, v=True) == True:
+            self.jobImportCamera()
+
+        if mc.checkBox('c4', q=True, v=True) == True:
+            self.jobImportAnimation()
+
+        if mc.checkBox('c5', q=True, v=True) == True:
+            self.jobExtra1()
+
+        if mc.checkBox('c6', q=True, v=True) == True:
+            self.jobEctra2()
+
+        if mc.checkBox('c7', q=True, v=True) == True:
+            self.jobExtra3()
+
+        if mc.checkBox('c8', q=True, v=True) == True:
+            self.jobExtra4()
+
+        if mc.checkBox('c9', q=True, v=True) == True:
+            self.jobExtra5()
+
+        if mc.checkBox('c10', q=True, v=True) == True:
+            self.jobExtra6()
+
+        if mc.checkBox('c11', q=True, v=True) == True:
+            self.jobExtra7()
+
+        if mc.checkBox('c12', q=True, v=True) == True:
+            self.jobExtra8()
+
+        if mc.checkBox('c13', q=True, v=True) == True:
+            self.jobExtra9()
+
+        if mc.checkBox('c14', q=True, v=True) == True:
+            self.jobRenderSettings()
+
+        if mc.checkBox('c15', q=True, v=True) == True:
+            self.jobAOVsSetting()
+
+        if mc.checkBox('c16', q=True, v=True) == True:
+            self.jobSubmitDeadline()
+
     def jobTest(self, *args):
         logging.debug('test')
         print browsFile.search()
@@ -145,52 +190,52 @@ class UiClass(object):
 
         mc.radioCollection()
         c1 = mc.checkBox('c1', l='New Scene', v=0)
-        c2 = mc.checkBox(l='Open Stage', v=1)
+        c2 = mc.checkBox('c2', l='Open Stage', v=1)
         f2 = mc.textField('f2', w=500, h=20,
                           text=r'\\172.29.44.4\cg\ms06\renderProj\scenes\stage\Shibuya.evening.v1.mb')
         b2 = mc.button(l='Brows', w=50, h=20)
         sp1 = mc.separator(w=680)
-        c3 = mc.checkBox(l='Camera', v=1)
+        c3 = mc.checkBox('c3', l='Camera', v=1)
         f3 = mc.textField('f3', w=500, h=20, text='')
         b3 = mc.button(l='Brows', w=50, h=20)
-        c4 = mc.checkBox(l='Animation', v=1)
+        c4 = mc.checkBox('c4', l='Animation', v=1)
         f4 = mc.textField('f4', w=500, h=20, text='')
         b4 = mc.button(l='Brows', w=50, h=20)
-        c5 = mc.checkBox(l='Extra 1', v=0)
+        c5 = mc.checkBox('c5', l='Extra 1', v=0)
         f5 = mc.textField('f5', w=500, h=20, text='')
         b5 = mc.button(l='Brows', w=50, h=20)
-        c6 = mc.checkBox(l='Extra 2', v=0)
+        c6 = mc.checkBox('c6', l='Extra 2', v=0)
         f6 = mc.textField('f6', w=500, h=20, text='')
         b6 = mc.button(l='Brows', w=50, h=20)
-        c7 = mc.checkBox(l='Extra 3', v=0)
+        c7 = mc.checkBox('c7', l='Extra 3', v=0)
         f7 = mc.textField('f7', w=500, h=20, text='')
         b7 = mc.button(l='Brows', w=50, h=20)
-        c8 = mc.checkBox(l='Extra 4', v=0)
+        c8 = mc.checkBox('c8', l='Extra 4', v=0)
         f8 = mc.textField('f8', w=500, h=20, text='')
         b8 = mc.button(l='Brows', w=50, h=20)
-        c9 = mc.checkBox(l='Extra 5', v=0)
+        c9 = mc.checkBox('c9', l='Extra 5', v=0)
         f9 = mc.textField('f9', w=500, h=20, text='')
         b9 = mc.button(l='Brows', w=50, h=20)
-        c10 = mc.checkBox(l='Extra 6', v=0)
+        c10 = mc.checkBox('c10', l='Extra 6', v=0)
         f10 = mc.textField('f10', w=500, h=20, text='')
         b10 = mc.button(l='Brows', w=50, h=20)
-        c11 = mc.checkBox(l='Extra 7', v=0)
+        c11 = mc.checkBox('c11', l='Extra 7', v=0)
         f11 = mc.textField('f11', w=500, h=20, text='')
         b11 = mc.button(l='Brows', w=50, h=20)
-        c12 = mc.checkBox(l='Extra 8', v=0)
+        c12= mc.checkBox('c12', l='Extra 8', v=0)
         f12 = mc.textField('f12', w=500, h=20, text='')
         b12 = mc.button(l='Brows', w=50, h=20)
-        c13 = mc.checkBox(l='Extra 9', v=0)
+        c13 = mc.checkBox('c13', l='Extra 9', v=0)
         f13 = mc.textField('f13', w=500, h=20, text='')
         b13 = mc.button(l='Brows', w=50, h=20)
         sp2 = mc.separator(w=680)
-        c14 = mc.checkBox(l='Render Settings', v=1)
+        c14 = mc.checkBox('c14', l='Render Settings', v=1)
         f14 = mc.textField('f14', w=500, h=20, text='')
         b14 = mc.button(l='Brows', w=50, h=20)
-        c15 = mc.checkBox(l='AOVs Settings', v=1)
+        c15 = mc.checkBox('c15', l='AOVs Settings', v=1)
         f15 = mc.textField('f15', w=500, h=20, text='')
         b15 = mc.button(l='Brows', w=50, h=20)
-        c16 = mc.checkBox(l='Deadline Settings', v=0)
+        c16 = mc.checkBox('c16', l='Deadline Settings', v=0)
         f16 = mc.textField('f16', w=500, h=20, text='')
         b16 = mc.button(l='Brows', w=50, h=20)
         t1 = mc.text(l='shotID :')
