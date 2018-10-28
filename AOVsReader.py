@@ -4,6 +4,7 @@ import logging
 
 path = r'\\172.29.44.4\cg\ms06\msJobPitcher\AOVs\aov.json'
 
+
 def AOVsRead():
     caov = mc.ls(typ='aiAOV')
     cnt = len(caov)
@@ -34,12 +35,13 @@ def AOVsRead():
         mc.createNode('aiAOVFilter', n='defaultArnoldFilter')
     if 'defaultArnoldDriver' not in caod:
         mc.createNode('aiAOVDriver', n='defaultArnoldDriver')
-    
+
     logging.debug('AOVsRead')
     get = open(path)
     a = json.load(get)
     b = a['arnold']
 
+    # AOVs
     for z in b.keys():
         if z == 'outputs':
             y = b[z]
