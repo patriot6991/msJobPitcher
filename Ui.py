@@ -95,6 +95,7 @@ def jobBuildRenderScene(self):
 def jobTest(self):
     logging.debug('test')
     print browsFile.search()
+    AOVsReader.AOVsRead()
 
 
 def browsStage(self):
