@@ -11,6 +11,7 @@ import createRenderNode
 class UiClass(object):
     def __init__(self):
         self.develop()
+        self.shotID = ''
 
     def develop(self, *args):
         reload(myLogger)
@@ -73,9 +74,8 @@ class UiClass(object):
 
     def jobSetShotID(self, *args):
         logging.debug('jobSetShotID')
-        global msJobPitcherShotID
-        msJobPitcherShotID = mc.textField('f17', q=True, text=True)
-        logging.debug('shotID is %s' % (msJobPitcherShotID))
+        self.shotID = mc.textField('f17', q=True, text=True)
+        logging.debug('shotID is %s' % (self.shotID))
 
     def jobBuildRenderScene(self, *args):
         logging.debug('jobBuildRenderScene')
