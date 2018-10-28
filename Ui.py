@@ -1,19 +1,179 @@
 # coding:UTF-8
 import maya.cmds as mc
+import logging
+import myLogger
+import RenderSetting
+import AOVsReader
+import browsFile
 
-# def develop():
-#     reload(RenderSetting)
+
+def develop():
+    reload(myLogger)
+    reload(RenderSetting)
+    reload(AOVsReader)
+    reload(browsFile)
+
+
+def jobNewScenes(self):
+    logging.debug('jobNewScenes')
+    mc.file(f=True, new=True)
+
+
+def jobOpenStage(self):
+    logging.debug('jobOpenStage')
+
+
+def jobImportCamera(self):
+    logging.debug('jobImportCamera')
+
+
+def jobImportAnimation(self):
+    logging.debug('jobImportAnimation')
+
+
+def jobExtra1(self):
+    logging.debug('jobExtra1')
+
+
+def jobEctra2(self):
+    logging.debug('jobExtra2')
+
+
+def jobExtra3(self):
+    logging.debug('jobExtra3')
+
+
+def jobExtra4(self):
+    logging.debug('jobExtra4')
+
+
+def jobExtra5(self):
+    logging.debug('jobExtra5')
+
+
+def jobExtra6(self):
+    logging.debug('jobExtra6')
+
+
+def jobExtra7(self):
+    logging.debug('jobExtra7')
+
+
+def jobExtra8(self):
+    logging.debug('jobExtra8')
+
+
+def jobExtra9(self):
+    logging.debug('jobExtra9')
+
+
+def jobRenderSettings(self):
+    logging.debug('jobRenderSetting')
+    RenderSetting.jsonRead()
+
+
+def jobAOVsSetting(self):
+    logging.debug('jobAOVsSetting')
+
+
+def jobSubmitDeadline(self):
+    logging.debug('jobSubmitDeadline')
+
+
+def jobSetShotID(self):
+    logging.debug('jobSetShotID')
+    global msJobPitcherShotID
+    msJobPitcherShotID = mc.textField('f17', q=True, text=True)
+    logging.debug('shotID is %s' %(msJobPitcherShotID))
+
+
+def jobBuildRenderScene(self):
+    logging.debug('jobBuildRenderScene')
+    jobSetShotID(self)
+
+
+def jobTest(self):
+    logging.debug('test')
+    print browsFile.search()
+
+
+def browsStage(self):
+    logging.debug('browsStage')
+
+
+def browsCamera(self):
+    logging.debug('browsCamera')
+
+
+def browsAnimation(self):
+    logging.debug('browsAnimation')
+
+
+def browsExtra1(self):
+    logging.debug('browsExtra1')
+
+
+def browsExtra2(self):
+    logging.debug('browsExtra2')
+
+
+def browsExtra3(self):
+    logging.debug('browsExtra3')
+
+
+def browsExtra4(self):
+    logging.debug('browsExtra4')
+
+
+def browsExtra5(self):
+    logging.debug('browsExtra5')
+
+
+def browsExtra6(self):
+    logging.debug('browsExtra6')
+
+
+def browsExtra7(self):
+    logging.debug('browsExtra7')
+
+
+def browsExtra8(self):
+    logging.debug('browsExtra8')
+
+
+def browsExtra9(self):
+    logging.debug('browsExtra9')
+
+
+def browsRenderSettings(self):
+    logging.debug('browsRenderSettings')
+
+
+def browsAOVsSettings(self):
+    logging.debug('browsAOVsSettings')
+
+
+def browsDeadlineSettings(self):
+    logging.debug('browsDeadlineSettings')
+
 
 def ui():
+    logging.debug('shou UI')
     if mc.window('win', ex=True) == True:
         mc.deleteUI('win', window=True)
+
+    develop()
 
     win = mc.window('win', title='mcJobPitcher', widthHeight=(300, 700))
     form = mc.formLayout()
 
+    # my logger
+    ml = myLogger.MyLogger(mc)
+    cLog = ml.createCheckbox(1)
+
     mc.radioCollection()
     c1 = mc.checkBox(l='New Scene', v=0)
-    c2 = mc.checkBox(l='Stage', v=1)
+    c2 = mc.checkBox(l='Open Stage', v=1)
     f2 = mc.textField('f2', w=500, h=20, text=r'\\172.29.44.4\cg\ms06\renderProj\scenes\stage\Shibuya.evening.v1.mb')
     b2 = mc.button(l='Brows', w=50, h=20)
     sp1 = mc.separator(w=680)
@@ -62,8 +222,9 @@ def ui():
     b16 = mc.button(l='Brows', w=50, h=20)
     t1 = mc.text(l='shotID :')
     f17 = mc.textField('f17', w=100, h=20, text='sXXcXX')
-    b17 = mc.button(l='Set shotID', w=220, h=40)
-    b18 = mc.button(l='Build Render Scene', w=450, h=70)
+    b17 = mc.button(l='Set shotID', w=220, h=40, c=jobSetShotID)
+    b18 = mc.button(l='Build Render Scene', w=450, h=70, c=jobBuildRenderScene)
+    b19 = mc.button(l='test', w=450, h=70, c=jobTest)
 
     mc.formLayout(form, edit=True, attachForm=[
         (c1, 'top', 10), (c1, 'left', 10),
@@ -117,7 +278,9 @@ def ui():
         (t1, 'top', 438), (t1, 'left', 80),
         (f17, 'top', 435), (f17, 'left', 130),
         (b17, 'top', 465), (b17, 'left', 10),
-        (b18, 'top', 435), (b18, 'left', 240)
+        (b18, 'top', 435), (b18, 'left', 240),
+        (b19, 'top', 520), (b19, 'left', 10),
+        (cLog, 'top', 520), (cLog, 'right', 10),
     ])
 
     mc.showWindow(win)

@@ -1,10 +1,13 @@
 import maya.cmds as mc
 import maya.mel as mel
 import json
+import logging
 
 path = r'\\172.29.44.4\cg\ms06\msJobPitcher\renderSettings\msTest.json'
 
+
 def jsonRead():
+    logging.debug('jsonRead')
     global dec
     get = open(path)
     a = json.load(get)
@@ -15,9 +18,10 @@ def jsonRead():
     dec.update(c)
     common()
 
+
 def common():
     global dec
-    #File output
+    # File output
     mc.setAttr('defaultRenderGlobals.imageFilePrefix', dec['defaultRenderGlobals.imageFilePrefix'], type='string')
     mc.setAttr('defaultArnoldDriver.aiTranslator', dec['defaultArnoldDriver.aiTranslator'], type='string')
     if 'jpeg' in dec['defaultRenderGlobals.imfPluginKey']:
@@ -57,23 +61,23 @@ def common():
         mel.eval('setMayaSoftwareFrameExt("6", 0)')  #F/A.
         mc.setAttr('defaultRenderGlobals.extensionPadding', dec['defaultRenderGlobals.extensionPadding'])
 
-    #Flame Range
+    # Flame Range
     mc.setAttr('defaultRenderGlobals.startFrame', 1)
     mc.setAttr('defaultRenderGlobals.endFrame', 300)
     mc.setAttr('defaultRenderGlobals.byFrameStep', 1)
     mc.setAttr('defaultRenderGlobals.skipExistingFrames', dec['defaultRenderGlobals.skipExistingFrames'])
     mc.setAttr('defaultRenderGlobals.modifyExtension', 0)
 
-    #renderableCamera
-    mc.setAttr('perspShape.renderable', 0)
+    # renderableCamera
+    mc.setAttr('perspShape.renderable', 1)
     mc.setAttr('topShape.renderable', 0)
     mc.setAttr('frontShape.renderable', 0)
     mc.setAttr('sideShape.renderable', 0)
-    mc.setAttr('cameraShape1.renderable', 1)
+    mc.setAttr('perspShape.renderable', 1)
     mc.setAttr('perspShape.mask', 1)
     mc.setAttr('perspShape.depth', 0)
 
-    #imageSize
+    # imageSize
     mc.setAttr('defaultResolution.aspectLock', dec['defaultResolution.aspectLock'])
     mc.setAttr('defaultResolution.width', dec['defaultResolution.width'])
     mc.setAttr('defaultResolution.height', dec['defaultResolution.height'])
@@ -83,10 +87,11 @@ def common():
 
     arnoldRenderer()
 
+
 def arnoldRenderer():
     global dec
 
-    #sampling
+    # sampling
     mc.setAttr('defaultArnoldRenderOptions.AASamples', dec['defaultArnoldRenderOptions.AASamples'])
     mc.setAttr('defaultArnoldRenderOptions.GIDiffuseSamples', dec['defaultArnoldRenderOptions.GIDiffuseSamples'])
     mc.setAttr('defaultArnoldRenderOptions.GISpecularSamples', dec['defaultArnoldRenderOptions.GISpecularSamples'])
@@ -95,29 +100,29 @@ def arnoldRenderer():
     mc.setAttr('defaultArnoldRenderOptions.GIVolumeSamples', dec['defaultArnoldRenderOptions.GIVolumeSamples'])
     mc.setAttr('defaultArnoldRenderOptions.enableProgressiveRender', dec['defaultArnoldRenderOptions.enableProgressiveRender'])
 
-    #Adaptive Sampling
+    # Adaptive Sampling
     mc.setAttr('defaultArnoldRenderOptions.enableAdaptiveSampling', dec['defaultArnoldRenderOptions.enableAdaptiveSampling'])
     mc.setAttr('defaultArnoldRenderOptions.AASamplesMax', dec['defaultArnoldRenderOptions.AASamplesMax'])
     mc.setAttr('defaultArnoldRenderOptions.AAAdaptiveThreshold', dec['defaultArnoldRenderOptions.AAAdaptiveThreshold'])
 
-    #Clamping
+    # Clamping
     mc.setAttr('defaultArnoldRenderOptions.use_sample_clamp', dec['defaultArnoldRenderOptions.use_sample_clamp'])
     mc.setAttr('defaultArnoldRenderOptions.use_sample_clamp_AOVs', dec['defaultArnoldRenderOptions.use_sample_clamp_AOVs'])
     mc.setAttr('defaultArnoldRenderOptions.AASampleClamp', dec['defaultArnoldRenderOptions.AASampleClamp'])
     mc.setAttr('defaultArnoldRenderOptions.indirectSampleClamp', dec['defaultArnoldRenderOptions.indirectSampleClamp'])
 
-    #Filter
+    # Filter
     mc.setAttr('defaultArnoldFilter.aiTranslator', dec['defaultArnoldFilter.aiTranslator'], type='string')
     mc.setAttr('defaultArnoldFilter.width', dec['defaultArnoldFilter.width'])
     mc.setAttr('defaultArnoldFilter.scalarMode', dec['defaultArnoldFilter.scalarMode'])
     mc.setAttr('defaultArnoldFilter.filterWeights', dec['defaultArnoldFilter.filterWeights'])
 
-    #Advanced
+    # Advanced
     mc.setAttr('defaultArnoldRenderOptions.lock_sampling_noise', dec['defaultArnoldRenderOptions.lock_sampling_noise'])
     mc.setAttr('defaultArnoldRenderOptions.sssUseAutobump', dec['defaultArnoldRenderOptions.sssUseAutobump'])
     mc.setAttr('defaultArnoldRenderOptions.indirectSpecularBlur', dec['defaultArnoldRenderOptions.indirectSpecularBlur'])
 
-    #Ray Depth
+    # Ray Depth
     mc.setAttr('defaultArnoldRenderOptions.GITotalDepth', dec['defaultArnoldRenderOptions.GITotalDepth'])
     mc.setAttr('defaultArnoldRenderOptions.GIDiffuseDepth', dec['defaultArnoldRenderOptions.GIDiffuseDepth'])
     mc.setAttr('defaultArnoldRenderOptions.GISpecularDepth', dec['defaultArnoldRenderOptions.GISpecularDepth'])
@@ -125,7 +130,7 @@ def arnoldRenderer():
     mc.setAttr('defaultArnoldRenderOptions.GIVolumeDepth', dec['defaultArnoldRenderOptions.GIVolumeDepth'])
     mc.setAttr('defaultArnoldRenderOptions.autoTransparencyDepth', dec['defaultArnoldRenderOptions.autoTransparencyDepth'])
 
-    #Motion blur
+    # Motion blur
     mc.setAttr('defaultArnoldRenderOptions.motion_blur_enable', dec['defaultArnoldRenderOptions.motion_blur_enable'])
     mc.setAttr('defaultArnoldRenderOptions.mb_object_deform_enable', dec['defaultArnoldRenderOptions.mb_object_deform_enable'])
     mc.setAttr('defaultArnoldRenderOptions.mb_camera_enable', dec['defaultArnoldRenderOptions.mb_camera_enable'])
@@ -135,12 +140,12 @@ def arnoldRenderer():
     mc.setAttr('defaultArnoldRenderOptions.motion_start', dec['defaultArnoldRenderOptions.motion_start'])
     mc.setAttr('defaultArnoldRenderOptions.motion_end', dec['defaultArnoldRenderOptions.motion_end'])
 
-    #Lights
+    # Lights
     mc.setAttr('defaultArnoldRenderOptions.lowLightThreshold', dec['defaultArnoldRenderOptions.lowLightThreshold'])
     mc.setAttr('defaultArnoldRenderOptions.lightLinking', dec['defaultArnoldRenderOptions.lightLinking'])
     mc.setAttr('defaultArnoldRenderOptions.shadowLinking', dec['defaultArnoldRenderOptions.shadowLinking'])
 
-    #Texturs
+    # Texturs
     mc.setAttr('defaultArnoldRenderOptions.autotx', dec['defaultArnoldRenderOptions.autotx'])
     mc.setAttr('defaultArnoldRenderOptions.use_existing_tiled_textures', dec['defaultArnoldRenderOptions.use_existing_tiled_textures'])
     mc.setAttr('defaultArnoldRenderOptions.textureAcceptUnmipped', dec['defaultArnoldRenderOptions.textureAcceptUnmipped'])
@@ -151,9 +156,3 @@ def arnoldRenderer():
     mc.setAttr('defaultArnoldRenderOptions.textureMaxOpenFiles', dec['defaultArnoldRenderOptions.textureMaxOpenFiles'])
     mc.setAttr('defaultArnoldRenderOptions.textureDiffuseBlur', dec['defaultArnoldRenderOptions.textureDiffuseBlur'])
     mc.setAttr('defaultArnoldRenderOptions.textureSpecularBlur', dec['defaultArnoldRenderOptions.textureSpecularBlur'])
-
-
-# win = mc.window(t='BtoTtest', widthHeight=(200,30))
-# mc.columnLayout()
-# mc.button(l='BtoT', c='jsonRead()')
-# mc.showWindow(win)
