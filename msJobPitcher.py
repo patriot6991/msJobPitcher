@@ -2,10 +2,12 @@
 import Ui
 import logging
 import maya.mel as mel
+import myLogger
 
 
 def develop():
     reload(Ui)
+    reload(myLogger)
 
 
 def execution():
