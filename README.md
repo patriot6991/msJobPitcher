@@ -6,7 +6,11 @@ MS用のレンダーシーン構築＆レンダージョブのサブミットツ
 import msJobPitcher
 msJobPitcher.execution()
 ```
-
+パスが通ってない場合はこれで通してください。
+```python
+import sys 
+sys.path.append( 'filePath\msJobPitcher' )
+```
 チェックボックスを付けたジョブが上から順に実行されます。
 
 
