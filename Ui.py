@@ -21,6 +21,8 @@ class UiClass(object):
         self.renderSettingPath = r''
         self.AOVsSettingPath = r''
         self.deadlineSettingPath = r''
+        self.minTime = ''
+        self.maxTime = ''
 
     def develop(self, *args):
         reload(myLogger)
@@ -174,9 +176,15 @@ class UiClass(object):
         if mc.checkBox('c16', q=True, v=True) == True:
             self.jobSubmitDeadline()
 
-    def jobTest(self, *args):
-        logging.debug('test')
-        print browsFile.search()
+        self.jobTimeRange()
+
+    def jobTimeRange(self, *args):
+        logging.debug('jobTimeRange')
+        self.minTime = mc.timeField('f18', q=True, v=True)
+        self.maxTime = mc.timeField('f19', q=True, v=True)
+        logging.debug('minTime is %s' %(self.minTime))
+        logging.debug('maxTime is %s' %(self.maxTime))
+
 
     def browsStage(self, *args):
         logging.debug('browsStage')
@@ -247,7 +255,7 @@ class UiClass(object):
 
         self.develop()
 
-        win = mc.window('win', title='mcJobPitcher', widthHeight=(300, 700))
+        win = mc.window('win', title='mcJobPitcher', widthHeight=(700, 515))
         form = mc.formLayout()
 
         # my logger
@@ -304,10 +312,12 @@ class UiClass(object):
         f16 = mc.textField('f16', w=500, h=20, text='')
         b16 = mc.button(l='Brows', w=50, h=20)
         t1 = mc.text(l='shotID :')
-        f17 = mc.textField('f17', w=100, h=20, text='sXXcXX')
-        b17 = mc.button(l='Set shotID', w=220, h=40, c=self.jobSetShotID)
-        b18 = mc.button(l='Build Render Scene', w=450, h=70, c=self.jobBuildRenderScene)
-        b19 = mc.button(l='test', w=450, h=70, c=self.jobTest)
+        f17 = mc.textField('f17', w=110, h=20, text='sXXcXX')
+        t2 = mc.text(l='time range')
+        f18 = mc.timeField('f18', w=50, h=20, v=1, s=1)
+        f19 = mc.timeField('f19', w=50, h=20, v=100, s=1)
+        b17 = mc.button(l='Set shotID', w=180, h=70, c=self.jobSetShotID)
+        b18 = mc.button(l='Build Render Scene', w=300, h=70, c=self.jobBuildRenderScene)
 
         mc.formLayout(form, edit=True, attachForm=[
             (c1, 'top', 10), (c1, 'left', 10),
@@ -358,12 +368,15 @@ class UiClass(object):
             (c16, 'top', 410), (c16, 'left', 10),
             (f16, 'top', 410), (f16, 'left', 130),
             (b16, 'top', 410), (b16, 'left', 640),
-            (t1, 'top', 438), (t1, 'left', 80),
-            (f17, 'top', 435), (f17, 'left', 130),
-            (b17, 'top', 465), (b17, 'left', 10),
-            (b18, 'top', 435), (b18, 'left', 240),
-            (b19, 'top', 520), (b19, 'left', 10),
-            (cLog, 'top', 520), (cLog, 'right', 10),
+            (t1, 'top', 438), (t1, 'left', 10),
+            (f17, 'top', 435), (f17, 'left', 80),
+            (t2, 'top', 463), (t2, 'left', 10),
+            (f18, 'top', 460), (f18, 'left', 80),
+            (f19, 'top', 460), (f19, 'left', 140),
+            (b17, 'top', 435), (b17, 'left', 200),
+            (b18, 'top', 435), (b18, 'left', 390),
+            (cLog, 'top', 485), (cLog, 'left', 10),
         ])
 
         mc.showWindow(win)
+        mc.window('win', e=True, wh=(700,515))
