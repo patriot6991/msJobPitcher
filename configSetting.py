@@ -8,5 +8,7 @@ class ReadJson(object):
 
     def read(self, *args):
         logging.debug('config reading')
-        f =open('C:\Users\user\PycharmProjects\msJobPitcher\config.json')
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.json')
+        print path
+        f =open(path)
         self.config_dict = json.load(f)
