@@ -7,6 +7,7 @@ import RenderSetting
 import AOVsReader
 import browsFile
 import createRenderNode
+import configSetting
 
 
 class UiClass(object):
@@ -23,6 +24,7 @@ class UiClass(object):
         reload(AOVsReader)
         reload(browsFile)
         reload(createRenderNode)
+        reload(configSetting)
 
     def jobNewScenes(self, *args):
         logging.debug('jobNewScenes')
@@ -143,6 +145,8 @@ class UiClass(object):
     def jobTest(self, *args):
         logging.debug('test')
         print browsFile.search()
+        a = configSetting.ReadJson()
+        a.read()
 
     def browsStage(self, *args):
         logging.debug('browsStage')
