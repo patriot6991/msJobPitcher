@@ -8,6 +8,7 @@ import AOVsReader
 import browsFile
 import createRenderNode
 import configSetting
+import importScenes
 
 
 class UiClass(object):
@@ -30,6 +31,7 @@ class UiClass(object):
         reload(browsFile)
         reload(createRenderNode)
         reload(configSetting)
+        reload(importScenes)
 
     def jobNewScenes(self, *args):
         logging.debug('jobNewScenes')
@@ -37,12 +39,16 @@ class UiClass(object):
 
     def jobOpenStage(self, *args):
         logging.debug('jobOpenStage')
+        print self.stagePath
+        mc.file(self.stagePath, open=True)
 
     def jobImportCamera(self, *args):
         logging.debug('jobImportCamera')
+        importScenes.importScenes(self.cam_path)
 
     def jobImportAnimation(self, *args):
         logging.debug('jobImportAnimation')
+        importScenes.importScenes(self.anim_path)
 
     def jobExtra1(self, *args):
         logging.debug('jobExtra1')
@@ -90,9 +96,13 @@ class UiClass(object):
 
         self.cam_path = os.path.join(self.projectPath, 'scenes', 'cam', '%s.cam.v1.fbx' %(self.shotID))
         mc.textField('f3', e=True, tx=self.cam_path)
+        logging.debug('camera path is %s' %(self.cam_path))
 
         self.anim_path = os.path.join(self.projectPath, 'scenes', '%s.render.v1.ma' %(self.shotID))
         mc.textField('f4', e=True, tx=self.anim_path)
+        logging.debug('animation path is %s' %(self.anim_path))
+
+        print self.anim_path
 
     def jobBuildRenderScene(self, *args):
         logging.debug('jobBuildRenderScene')
