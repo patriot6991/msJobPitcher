@@ -4,9 +4,8 @@ import logging
 import maya.mel as mel
 
 
-def importScenes():
+def importScenes(fPath=''):
     logging.debug('importScens')
-    fPath = r''
     fPath = r"{}".format(fPath)
     ftype = ""
 
