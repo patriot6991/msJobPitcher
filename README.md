@@ -17,6 +17,7 @@ sys.path.append( 'filePath\msJobPitcher' )
 
 # 機能
 チェックボックスを付けたジョブが上から順に実行されます。
+![ui image](images/ui.png)
 
 ### New Scene
 強制的に新規シーンを開きます。
