@@ -79,11 +79,10 @@ class UiClass(object):
 
     def jobRenderSettings(self, *args):
         logging.debug('jobRenderSetting')
-        createRenderNode.create()
         RenderSetting.jsonRead()
 
     def jobAOVsSetting(self, *args):
-        createRenderNode.create()
+        AOVsReader.AOVsRead()
         logging.debug('jobAOVsSetting')
 
     def jobSubmitDeadline(self, *args):
@@ -148,6 +147,8 @@ class UiClass(object):
         if mc.checkBox('c13', q=True, v=True) == True:
             self.jobExtra9()
 
+        createRenderNode.create()
+        
         if mc.checkBox('c14', q=True, v=True) == True:
             self.jobRenderSettings()
 
