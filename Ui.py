@@ -13,7 +13,6 @@ import importScenes
 
 class UiClass(object):
     def __init__(self):
-        self.develop()
         self.shotID = r''
         self.cam_path = r''
         self.anim_path = r''
@@ -22,7 +21,6 @@ class UiClass(object):
         self.renderSettingPath = r''
         self.AOVsSettingPath = r''
         self.deadlineSettingPath = r''
-
 
     def develop(self, *args):
         reload(myLogger)
@@ -52,30 +50,48 @@ class UiClass(object):
 
     def jobExtra1(self, *args):
         logging.debug('jobExtra1')
+        ex1 = mc.textField('f5', q=True, tx=True)
+        importScenes.importScenes(ex1)
 
     def jobEctra2(self, *args):
         logging.debug('jobExtra2')
+        ex2 = mc.textField('f6', q=True, tx=True)
+        importScenes.importScenes(ex2)
 
     def jobExtra3(self, *args):
         logging.debug('jobExtra3')
+        ex3 = mc.textField('f7', q=True, tx=True)
+        importScenes.importScenes(ex3)
 
     def jobExtra4(self, *args):
         logging.debug('jobExtra4')
+        ex4 = mc.textField('f8', q=True, tx=True)
+        importScenes.importScenes(ex4)
 
     def jobExtra5(self, *args):
         logging.debug('jobExtra5')
+        ex5 = mc.textField('f9', q=True, tx=True)
+        importScenes.importScenes(ex5)
 
     def jobExtra6(self, *args):
         logging.debug('jobExtra6')
+        ex6 = mc.textField('f10', q=True, tx=True)
+        importScenes.importScenes(ex6)
 
     def jobExtra7(self, *args):
         logging.debug('jobExtra7')
+        ex7 = mc.textField('f11', q=True, tx=True)
+        importScenes.importScenes(ex7)
 
     def jobExtra8(self, *args):
         logging.debug('jobExtra8')
+        ex8 = mc.textField('f12', q=True, tx=True)
+        importScenes.importScenes(ex8)
 
     def jobExtra9(self, *args):
         logging.debug('jobExtra9')
+        ex9 = mc.textField('f13', q=True, tx=True)
+        importScenes.importScenes(ex9)
 
     def jobRenderSettings(self, *args):
         logging.debug('jobRenderSetting')
@@ -239,7 +255,7 @@ class UiClass(object):
         cLog = ml.createCheckbox(1)
 
         mc.radioCollection()
-        c1 = mc.checkBox('c1', l='New Scene', v=0)
+        c1 = mc.checkBox('c1', l='New Scene', v=1)
         c2 = mc.checkBox('c2', l='Open Stage', v=1)
         f2 = mc.textField('f2', w=500, h=20, text=self.stagePath)
         b2 = mc.button(l='Brows', w=50, h=20)
