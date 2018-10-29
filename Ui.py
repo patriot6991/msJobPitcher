@@ -13,10 +13,15 @@ import configSetting
 class UiClass(object):
     def __init__(self):
         self.develop()
-        self.shotID = ''
-        self.proj_path = r'\\172.29.44.4\cg\ms06\renderProj'
-        self.cam_path = ''
-        self.anim_path = ''
+        self.shotID = r''
+        self.cam_path = r''
+        self.anim_path = r''
+        self.projectPath = r''
+        self.stagePath = r''
+        self.renderSettingPath = r''
+        self.AOVsSettingPath = r''
+        self.deadlineSettingPath = r''
+
 
     def develop(self, *args):
         reload(myLogger)
@@ -83,10 +88,10 @@ class UiClass(object):
         self.shotID = mc.textField('f17', q=True, text=True)
         logging.debug('shotID is %s' % self.shotID)
 
-        self.cam_path = os.path.join(self.proj_path, 'scenes', 'cam', '%s.cam.v1.fbx' %(self.shotID))
+        self.cam_path = os.path.join(self.projectPath, 'scenes', 'cam', '%s.cam.v1.fbx' %(self.shotID))
         mc.textField('f3', e=True, tx=self.cam_path)
 
-        self.anim_path = os.path.join(self.proj_path, 'scenes', '%s.render.v1.ma' %(self.shotID))
+        self.anim_path = os.path.join(self.projectPath, 'scenes', '%s.render.v1.ma' %(self.shotID))
         mc.textField('f4', e=True, tx=self.anim_path)
 
     def jobBuildRenderScene(self, *args):
@@ -145,8 +150,6 @@ class UiClass(object):
     def jobTest(self, *args):
         logging.debug('test')
         print browsFile.search()
-        a = configSetting.ReadJson()
-        a.read()
 
     def browsStage(self, *args):
         logging.debug('browsStage')
@@ -193,8 +196,25 @@ class UiClass(object):
     def browsDeadlineSettings(self, *args):
         logging.debug('browsDeadlineSettings')
 
+    def config(self, *args):
+        logging.debug('job config')
+        a = configSetting.ReadJson()
+        a.read()
+        self.projectPath = a.config_dict['projectPath']
+        self.stagePath = a.config_dict['stagePath']
+        self.renderSettingPath = a.config_dict['renderSettingPath']
+        self.AOVsSettingPath = a.config_dict['AOVsSettingPath']
+        self.deadlineSettingPath = a.config_dict['deadlineSettingPath']
+
+        logging.debug('projectPath --> %s' %(self.projectPath))
+        logging.debug('stagePath --> %s' %(self.stagePath))
+        logging.debug('renderSettingPath --> %s' %(self.renderSettingPath))
+        logging.debug('AOVsSettingPath --> %s' %(self.AOVsSettingPath))
+        logging.debug('deadlineSettingPath --> %s' %(self.deadlineSettingPath))
+
     def ui(self, *args):
         logging.debug('shou UI')
+        self.config()
         if mc.window('win', ex=True) == True:
             mc.deleteUI('win', window=True)
 
@@ -210,8 +230,7 @@ class UiClass(object):
         mc.radioCollection()
         c1 = mc.checkBox('c1', l='New Scene', v=0)
         c2 = mc.checkBox('c2', l='Open Stage', v=1)
-        f2 = mc.textField('f2', w=500, h=20,
-                          text=r'\\172.29.44.4\cg\ms06\renderProj\scenes\stage\Shibuya.evening.v1.mb')
+        f2 = mc.textField('f2', w=500, h=20, text=self.stagePath)
         b2 = mc.button(l='Brows', w=50, h=20)
         sp1 = mc.separator(w=680)
         c3 = mc.checkBox('c3', l='Camera', v=1)
