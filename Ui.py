@@ -197,10 +197,10 @@ class UiClass(object):
         if mc.checkBox('c16', q=True, v=True) == True:
             self.jobSubmitDeadline()
 
+        self.jobTimeRange()
+
         if mc.checkBox('c17', q=True, v=True) == True:
             self.jobSaveScene()
-
-        self.jobTimeRange()
 
     def jobTimeRange(self, *args):
         logging.debug('jobTimeRange')
