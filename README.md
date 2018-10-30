@@ -28,27 +28,33 @@ sys.path.append( 'filePath\msJobPitcher' )
 ### Camera & Animation
 データをファイルインポートします。(.ma .mb .obj .fbx)
 
-ネームスペースなどは付きません。shotIDを元にカメラデータを自動的に指定します。
+ネームスペースなどは付きません。shotIDを元にカメラ・アニメーションデータを自動的に指定します。
 
 ### Extra
-その他のデータをファイルインポートします。(.ma .mb .obj .fbx)ネームスペースなどは付きません。 
+その他のデータをファイルインポートします。(.ma .mb .obj .fbx)
+
+ネームスペースなどは付きません。 
 
 ### Render Settings & AOVsSetting
 `config.json` で指定したデフォルトの設定ファイルをインポートします。
 
-### Deadline Setting
+### Deadline Setting(開発中)
 `config.json` で指定したデフォルトの設定ファイルをインポートし、レンダージョブをDeadline10に送信します。
 
 この機能を利用するには事前にDeadline10のセットアップを済ませる必要があります。
 
 また、プロジェクトパスをDeadline10が読み書き可能なネットワークドライブにする必要があります。
 
+### time renge(開発中)
+カットのタイムレンジを指定します。ここで設定したレンジがレンダージョブに設定されます。
+
 ### shotID
 カット事の固有IDを設定します。プロジェクトの命名規則に従ってください。
 
 標準では `shotID.shot.v1.ma` のアニメーションデータと `shotID.cam.v1.fbx` のカメラデータを参照するよう自動的にファイルパスをセットします。
 
-また、ビルドしたシーンはプロジェクトパスのscenes直下に `shotID.render.v1.ma` として保存されます。
+### save Scene(開発中)
+ビルドしたシーンをプロジェクトパスのscenes直下に `shotID.render.vX.ma` として保存します。
 
 # myLogger
 logを仕込むときは `import logging` したうえで
