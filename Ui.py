@@ -39,7 +39,6 @@ class UiClass(object):
 
     def jobOpenStage(self, *args):
         logging.debug('jobOpenStage')
-        print self.stagePath
         mc.file(self.stagePath, open=True)
 
     def jobImportCamera(self, *args):
@@ -188,48 +187,89 @@ class UiClass(object):
 
     def browsStage(self, *args):
         logging.debug('browsStage')
+        path = browsFile.search(defPath=self.stagePath)
+        mc.textField('f2', e=True, text=path)
 
     def browsCamera(self, *args):
         logging.debug('browsCamera')
+        dir = os.path.join(self.projectPath, 'scenes', 'cam')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f3', e=True, text=path)
 
     def browsAnimation(self, *args):
         logging.debug('browsAnimation')
+        dir = os.path.join(self.projectPath, 'scenes', 'shot')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f4', e=True, text=path)
 
     def browsExtra1(self, *args):
         logging.debug('browsExtra1')
+        dir = os.path.join(self.projectPath, 'scenes')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f5', e=True, text=path)
 
     def browsExtra2(self, *args):
         logging.debug('browsExtra2')
+        dir = os.path.join(self.projectPath, 'scenes')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f6', e=True, text=path)
 
     def browsExtra3(self, *args):
         logging.debug('browsExtra3')
+        dir = os.path.join(self.projectPath, 'scenes')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f6', e=True, text=path)
 
     def browsExtra4(self, *args):
         logging.debug('browsExtra4')
+        dir = os.path.join(self.projectPath, 'scenes')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f7', e=True, text=path)
 
     def browsExtra5(self, *args):
         logging.debug('browsExtra5')
+        dir = os.path.join(self.projectPath, 'scenes')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f8', e=True, text=path)
 
     def browsExtra6(self, *args):
         logging.debug('browsExtra6')
+        dir = os.path.join(self.projectPath, 'scenes')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f9', e=True, text=path)
 
     def browsExtra7(self, *args):
         logging.debug('browsExtra7')
+        dir = os.path.join(self.projectPath, 'scenes')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f10', e=True, text=path)
 
     def browsExtra8(self, *args):
         logging.debug('browsExtra8')
+        dir = os.path.join(self.projectPath, 'scenes')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f11', e=True, text=path)
 
     def browsExtra9(self, *args):
         logging.debug('browsExtra9')
+        dir = os.path.join(self.projectPath, 'scenes')
+        path = browsFile.search(defPath=dir)
+        mc.textField('f12', e=True, text=path)
 
     def browsRenderSettings(self, *args):
         logging.debug('browsRenderSettings')
+        path = browsFile.search(defPath=self.renderSettingPath)
+        mc.textField('f13', e=True, text=path)
 
     def browsAOVsSettings(self, *args):
         logging.debug('browsAOVsSettings')
+        path = browsFile.search(defPath=self.AOVsSettingPath)
+        mc.textField('f14', e=True, text=path)
 
     def browsDeadlineSettings(self, *args):
         logging.debug('browsDeadlineSettings')
+        path = browsFile.search(defPath=self.deadlineSettingPath)
+        mc.textField('f15', e=True, text=path)
 
     def config(self, *args):
         logging.debug('job config')
@@ -266,51 +306,51 @@ class UiClass(object):
         c1 = mc.checkBox('c1', l='New Scene', v=1)
         c2 = mc.checkBox('c2', l='Open Stage', v=1)
         f2 = mc.textField('f2', w=500, h=20, text=self.stagePath)
-        b2 = mc.button(l='Brows', w=50, h=20)
+        b2 = mc.button(l='Brows', w=50, h=20, c=self.browsStage)
         sp1 = mc.separator(w=680)
         c3 = mc.checkBox('c3', l='Camera', v=1)
         f3 = mc.textField('f3', w=500, h=20, text='')
-        b3 = mc.button(l='Brows', w=50, h=20)
+        b3 = mc.button(l='Brows', w=50, h=20, c=self.browsCamera)
         c4 = mc.checkBox('c4', l='Animation', v=1)
         f4 = mc.textField('f4', w=500, h=20, text='')
-        b4 = mc.button(l='Brows', w=50, h=20)
+        b4 = mc.button(l='Brows', w=50, h=20, c=self.browsAnimation)
         c5 = mc.checkBox('c5', l='Extra 1', v=0)
         f5 = mc.textField('f5', w=500, h=20, text='')
-        b5 = mc.button(l='Brows', w=50, h=20)
+        b5 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra1)
         c6 = mc.checkBox('c6', l='Extra 2', v=0)
         f6 = mc.textField('f6', w=500, h=20, text='')
-        b6 = mc.button(l='Brows', w=50, h=20)
+        b6 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra2)
         c7 = mc.checkBox('c7', l='Extra 3', v=0)
         f7 = mc.textField('f7', w=500, h=20, text='')
-        b7 = mc.button(l='Brows', w=50, h=20)
+        b7 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra3)
         c8 = mc.checkBox('c8', l='Extra 4', v=0)
         f8 = mc.textField('f8', w=500, h=20, text='')
-        b8 = mc.button(l='Brows', w=50, h=20)
+        b8 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra4)
         c9 = mc.checkBox('c9', l='Extra 5', v=0)
         f9 = mc.textField('f9', w=500, h=20, text='')
-        b9 = mc.button(l='Brows', w=50, h=20)
+        b9 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra5)
         c10 = mc.checkBox('c10', l='Extra 6', v=0)
         f10 = mc.textField('f10', w=500, h=20, text='')
-        b10 = mc.button(l='Brows', w=50, h=20)
+        b10 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra6)
         c11 = mc.checkBox('c11', l='Extra 7', v=0)
         f11 = mc.textField('f11', w=500, h=20, text='')
-        b11 = mc.button(l='Brows', w=50, h=20)
+        b11 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra7)
         c12= mc.checkBox('c12', l='Extra 8', v=0)
         f12 = mc.textField('f12', w=500, h=20, text='')
-        b12 = mc.button(l='Brows', w=50, h=20)
+        b12 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra8)
         c13 = mc.checkBox('c13', l='Extra 9', v=0)
         f13 = mc.textField('f13', w=500, h=20, text='')
-        b13 = mc.button(l='Brows', w=50, h=20)
+        b13 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra9)
         sp2 = mc.separator(w=680)
         c14 = mc.checkBox('c14', l='Render Settings', v=1)
         f14 = mc.textField('f14', w=500, h=20, text='')
-        b14 = mc.button(l='Brows', w=50, h=20)
+        b14 = mc.button(l='Brows', w=50, h=20, c=self.browsRenderSettings)
         c15 = mc.checkBox('c15', l='AOVs Settings', v=1)
         f15 = mc.textField('f15', w=500, h=20, text='')
-        b15 = mc.button(l='Brows', w=50, h=20)
+        b15 = mc.button(l='Brows', w=50, h=20, c=self.browsAOVsSettings)
         c16 = mc.checkBox('c16', l='Deadline Settings', v=0)
         f16 = mc.textField('f16', w=500, h=20, text='')
-        b16 = mc.button(l='Brows', w=50, h=20)
+        b16 = mc.button(l='Brows', w=50, h=20, c=self.browsDeadlineSettings)
         t1 = mc.text(l='shotID :')
         f17 = mc.textField('f17', w=110, h=20, text='sXXcXX')
         t2 = mc.text(l='time range')
