@@ -197,6 +197,9 @@ class UiClass(object):
         if mc.checkBox('c16', q=True, v=True) == True:
             self.jobSubmitDeadline()
 
+        if mc.checkBox('c17', q=True, v=True) == True:
+            self.jobSaveScene()
+
         self.jobTimeRange()
 
     def jobTimeRange(self, *args):
@@ -206,6 +209,8 @@ class UiClass(object):
         logging.debug('minTime is %s' %(self.minTime))
         logging.debug('maxTime is %s' %(self.maxTime))
 
+    def jobSaveScene(self, *args):
+        logging.debug('jobSaveScene')
 
     def browsStage(self, *args):
         logging.debug('browsStage')
@@ -370,9 +375,9 @@ class UiClass(object):
         c15 = mc.checkBox('c15', l='AOVs Settings', v=1)
         f15 = mc.textField('f15', w=500, h=20, text=self.AOVsSettingPath)
         b15 = mc.button(l='Brows', w=50, h=20, c=self.browsAOVsSettings)
-        c16 = mc.checkBox('c16', l='Deadline Settings', v=0)
-        f16 = mc.textField('f16', w=500, h=20, text=self.deadlineSettingPath)
-        b16 = mc.button(l='Brows', w=50, h=20, c=self.browsDeadlineSettings)
+        c16 = mc.checkBox('c16', l='Deadline Settings', v=0, en=False)
+        f16 = mc.textField('f16', w=500, h=20, text=self.deadlineSettingPath, en=False)
+        b16 = mc.button(l='Brows', w=50, h=20, c=self.browsDeadlineSettings, en=False)
         t1 = mc.text(l='shotID :')
         f17 = mc.textField('f17', w=110, h=20, text='sXXcXX')
         t2 = mc.text(l='time range')
@@ -380,6 +385,7 @@ class UiClass(object):
         f19 = mc.timeField('f19', w=50, h=20, v=100, s=1)
         b17 = mc.button(l='Set shotID', w=180, h=70, c=self.jobSetShotID)
         b18 = mc.button(l='Build Render Scene', w=300, h=70, c=self.jobBuildRenderScene)
+        c17 = mc.checkBox('c17', l='save Scene', v=1)
 
         mc.formLayout(form, edit=True, attachForm=[
             (c1, 'top', 10), (c1, 'left', 10),
@@ -438,6 +444,7 @@ class UiClass(object):
             (b17, 'top', 435), (b17, 'left', 200),
             (b18, 'top', 435), (b18, 'left', 390),
             (cLog, 'top', 485), (cLog, 'left', 10),
+            (c17, 'top', 485), (c17, 'left', 80),
         ])
 
         mc.showWindow(win)
