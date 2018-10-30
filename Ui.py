@@ -18,20 +18,29 @@ class UiClass(object):
         self.anim_path = r''
         self.projectPath = r''
         self.stagePath = r''
+        self.extra1Path = r''
+        self.extra2Path = r''
+        self.extra3Path = r''
+        self.extra4Path = r''
+        self.extra5Path = r''
+        self.extra6Path = r''
+        self.extra7Path = r''
+        self.extra8Path = r''
+        self.extra9Path = r''
         self.renderSettingPath = r''
         self.AOVsSettingPath = r''
         self.deadlineSettingPath = r''
         self.minTime = ''
         self.maxTime = ''
 
-    def develop(self, *args):
-        reload(myLogger)
-        reload(RenderSetting)
-        reload(AOVsReader)
-        reload(browsFile)
-        reload(createRenderNode)
-        reload(configSetting)
-        reload(importScenes)
+    # def develop(self, *args):
+    #     reload(myLogger)
+    #     reload(RenderSetting)
+    #     reload(AOVsReader)
+    #     reload(browsFile)
+    #     reload(createRenderNode)
+    #     reload(configSetting)
+    #     reload(importScenes)
 
     def jobNewScenes(self, *args):
         logging.debug('jobNewScenes')
@@ -39,71 +48,86 @@ class UiClass(object):
 
     def jobOpenStage(self, *args):
         logging.debug('jobOpenStage')
+        self.stagePath = mc.textField('f2', q=True, text=True)
         mc.file(self.stagePath, open=True)
 
     def jobImportCamera(self, *args):
         logging.debug('jobImportCamera')
+        self.cam_path = mc.textField('f3', q=True, text=True)
         importScenes.importScenes(self.cam_path)
 
     def jobImportAnimation(self, *args):
         logging.debug('jobImportAnimation')
+        self.anim_path = mc.textField('f4', q=True, text=True)
         importScenes.importScenes(self.anim_path)
 
     def jobExtra1(self, *args):
         logging.debug('jobExtra1')
+        self.extra1Path = mc.textField('f5', q=True, text=True)
         ex1 = mc.textField('f5', q=True, tx=True)
         importScenes.importScenes(ex1)
 
     def jobEctra2(self, *args):
         logging.debug('jobExtra2')
+        self.extra2Path = mc.textField('f6', q=True, text=True)
         ex2 = mc.textField('f6', q=True, tx=True)
         importScenes.importScenes(ex2)
 
     def jobExtra3(self, *args):
         logging.debug('jobExtra3')
+        self.extra3Path = mc.textField('f7', q=True, text=True)
         ex3 = mc.textField('f7', q=True, tx=True)
         importScenes.importScenes(ex3)
 
     def jobExtra4(self, *args):
         logging.debug('jobExtra4')
+        self.extra4Path = mc.textField('f8', q=True, text=True)
         ex4 = mc.textField('f8', q=True, tx=True)
         importScenes.importScenes(ex4)
 
     def jobExtra5(self, *args):
         logging.debug('jobExtra5')
+        self.extra5Path = mc.textField('f9', q=True, text=True)
         ex5 = mc.textField('f9', q=True, tx=True)
         importScenes.importScenes(ex5)
 
     def jobExtra6(self, *args):
         logging.debug('jobExtra6')
+        self.extra6Path = mc.textField('f10', q=True, text=True)
         ex6 = mc.textField('f10', q=True, tx=True)
         importScenes.importScenes(ex6)
 
     def jobExtra7(self, *args):
         logging.debug('jobExtra7')
+        self.extra7Path = mc.textField('f11', q=True, text=True)
         ex7 = mc.textField('f11', q=True, tx=True)
         importScenes.importScenes(ex7)
 
     def jobExtra8(self, *args):
         logging.debug('jobExtra8')
+        self.extra8Path = mc.textField('f12', q=True, text=True)
         ex8 = mc.textField('f12', q=True, tx=True)
         importScenes.importScenes(ex8)
 
     def jobExtra9(self, *args):
         logging.debug('jobExtra9')
+        self.extra9Path = mc.textField('f13', q=True, text=True)
         ex9 = mc.textField('f13', q=True, tx=True)
         importScenes.importScenes(ex9)
 
     def jobRenderSettings(self, *args):
         logging.debug('jobRenderSetting')
+        self.renderSettingPath = mc.textField('f14', q=True, text=True)
         RenderSetting.jsonRead()
 
     def jobAOVsSetting(self, *args):
         AOVsReader.AOVsRead()
         logging.debug('jobAOVsSetting')
+        self.AOVsSettingPath = mc.textField('f15', q=True, text=True)
 
     def jobSubmitDeadline(self, *args):
         logging.debug('jobSubmitDeadline')
+        self.deadlineSettingPath = mc.textField('f16', q=True, text=True)
 
     def jobSetShotID(self, *args):
         logging.debug('jobSetShotID')
@@ -122,8 +146,6 @@ class UiClass(object):
 
     def jobBuildRenderScene(self, *args):
         logging.debug('jobBuildRenderScene')
-
-        self.jobSetShotID(self)
 
         if mc.checkBox('c1', q=True, v=True) == True:
             self.jobNewScenes()
@@ -218,58 +240,58 @@ class UiClass(object):
         logging.debug('browsExtra3')
         dir = os.path.join(self.projectPath, 'scenes')
         path = browsFile.search(defPath=dir)
-        mc.textField('f6', e=True, text=path)
+        mc.textField('f7', e=True, text=path)
 
     def browsExtra4(self, *args):
         logging.debug('browsExtra4')
         dir = os.path.join(self.projectPath, 'scenes')
         path = browsFile.search(defPath=dir)
-        mc.textField('f7', e=True, text=path)
+        mc.textField('f8', e=True, text=path)
 
     def browsExtra5(self, *args):
         logging.debug('browsExtra5')
         dir = os.path.join(self.projectPath, 'scenes')
         path = browsFile.search(defPath=dir)
-        mc.textField('f8', e=True, text=path)
+        mc.textField('f9', e=True, text=path)
 
     def browsExtra6(self, *args):
         logging.debug('browsExtra6')
         dir = os.path.join(self.projectPath, 'scenes')
         path = browsFile.search(defPath=dir)
-        mc.textField('f9', e=True, text=path)
+        mc.textField('f10', e=True, text=path)
 
     def browsExtra7(self, *args):
         logging.debug('browsExtra7')
         dir = os.path.join(self.projectPath, 'scenes')
         path = browsFile.search(defPath=dir)
-        mc.textField('f10', e=True, text=path)
+        mc.textField('f11', e=True, text=path)
 
     def browsExtra8(self, *args):
         logging.debug('browsExtra8')
         dir = os.path.join(self.projectPath, 'scenes')
         path = browsFile.search(defPath=dir)
-        mc.textField('f11', e=True, text=path)
+        mc.textField('f12', e=True, text=path)
 
     def browsExtra9(self, *args):
         logging.debug('browsExtra9')
         dir = os.path.join(self.projectPath, 'scenes')
         path = browsFile.search(defPath=dir)
-        mc.textField('f12', e=True, text=path)
+        mc.textField('f13', e=True, text=path)
 
     def browsRenderSettings(self, *args):
         logging.debug('browsRenderSettings')
         path = browsFile.search(defPath=self.renderSettingPath)
-        mc.textField('f13', e=True, text=path)
+        mc.textField('f14', e=True, text=path)
 
     def browsAOVsSettings(self, *args):
         logging.debug('browsAOVsSettings')
         path = browsFile.search(defPath=self.AOVsSettingPath)
-        mc.textField('f14', e=True, text=path)
+        mc.textField('f15', e=True, text=path)
 
     def browsDeadlineSettings(self, *args):
         logging.debug('browsDeadlineSettings')
         path = browsFile.search(defPath=self.deadlineSettingPath)
-        mc.textField('f15', e=True, text=path)
+        mc.textField('f16', e=True, text=path)
 
     def config(self, *args):
         logging.debug('job config')
@@ -293,7 +315,7 @@ class UiClass(object):
         if mc.window('win', ex=True) == True:
             mc.deleteUI('win', window=True)
 
-        self.develop()
+        # self.develop()
 
         win = mc.window('win', title='mcJobPitcher', widthHeight=(700, 515))
         form = mc.formLayout()
@@ -343,13 +365,13 @@ class UiClass(object):
         b13 = mc.button(l='Brows', w=50, h=20, c=self.browsExtra9)
         sp2 = mc.separator(w=680)
         c14 = mc.checkBox('c14', l='Render Settings', v=1)
-        f14 = mc.textField('f14', w=500, h=20, text='')
+        f14 = mc.textField('f14', w=500, h=20, text=self.renderSettingPath)
         b14 = mc.button(l='Brows', w=50, h=20, c=self.browsRenderSettings)
         c15 = mc.checkBox('c15', l='AOVs Settings', v=1)
-        f15 = mc.textField('f15', w=500, h=20, text='')
+        f15 = mc.textField('f15', w=500, h=20, text=self.AOVsSettingPath)
         b15 = mc.button(l='Brows', w=50, h=20, c=self.browsAOVsSettings)
         c16 = mc.checkBox('c16', l='Deadline Settings', v=0)
-        f16 = mc.textField('f16', w=500, h=20, text='')
+        f16 = mc.textField('f16', w=500, h=20, text=self.deadlineSettingPath)
         b16 = mc.button(l='Brows', w=50, h=20, c=self.browsDeadlineSettings)
         t1 = mc.text(l='shotID :')
         f17 = mc.textField('f17', w=110, h=20, text='sXXcXX')
