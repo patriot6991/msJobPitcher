@@ -53,7 +53,7 @@ sys.path.append( 'filePath\msJobPitcher' )
 
 標準では `shotID.shot.v1.ma` のアニメーションデータと `shotID.cam.v1.fbx` のカメラデータを参照するよう自動的にファイルパスをセットします。
 
-### save Scene(開発中)
+### save Scene
 ビルドしたシーンをプロジェクトパスのscenes直下に `shotID.render.vX.ma` として保存します。
 
 # myLogger
