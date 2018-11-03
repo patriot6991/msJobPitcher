@@ -9,6 +9,8 @@ import browsFile
 import createRenderNode
 import configSetting
 import importScenes
+import saveScene
+import searchFiles
 
 
 class UiClass(object):
@@ -33,14 +35,16 @@ class UiClass(object):
         self.minTime = ''
         self.maxTime = ''
 
-    # def develop(self, *args):
-    #     reload(myLogger)
-    #     reload(RenderSetting)
-    #     reload(AOVsReader)
-    #     reload(browsFile)
-    #     reload(createRenderNode)
-    #     reload(configSetting)
-    #     reload(importScenes)
+    def develop(self, *args):
+        reload(myLogger)
+        reload(RenderSetting)
+        reload(AOVsReader)
+        reload(browsFile)
+        reload(createRenderNode)
+        reload(configSetting)
+        reload(importScenes)
+        reload(saveScene)
+        reload(searchFiles)
 
     def jobNewScenes(self, *args):
         logging.debug('jobNewScenes')
@@ -211,6 +215,7 @@ class UiClass(object):
 
     def jobSaveScene(self, *args):
         logging.debug('jobSaveScene')
+        saveScene.saveScene(self.shotID, path=self.projectPath)
 
     def browsStage(self, *args):
         logging.debug('browsStage')
@@ -320,7 +325,7 @@ class UiClass(object):
         if mc.window('win', ex=True) == True:
             mc.deleteUI('win', window=True)
 
-        # self.develop()
+        self.develop()
 
         win = mc.window('win', title='mcJobPitcher', widthHeight=(700, 515))
         form = mc.formLayout()
