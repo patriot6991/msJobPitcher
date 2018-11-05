@@ -50,3 +50,5 @@ def AOVsRead():
                         if atr == 'message':
                             continue
                         mc.setAttr(f, e[f])
+
+    setAttr('defaultArnoldDriver.mergeAOVs', 1)
