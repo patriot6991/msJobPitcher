@@ -62,8 +62,6 @@ def common():
         mc.setAttr('defaultRenderGlobals.extensionPadding', dec['defaultRenderGlobals.extensionPadding'])
 
     # Flame Range
-    mc.setAttr('defaultRenderGlobals.startFrame', 1)
-    mc.setAttr('defaultRenderGlobals.endFrame', 300)
     mc.setAttr('defaultRenderGlobals.byFrameStep', 1)
     mc.setAttr('defaultRenderGlobals.skipExistingFrames', dec['defaultRenderGlobals.skipExistingFrames'])
     mc.setAttr('defaultRenderGlobals.modifyExtension', 0)
