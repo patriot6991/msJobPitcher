@@ -1,19 +1,19 @@
 import maya.cmds as mc
 import csv
+import logging
 
-csvPath = '/Users/ryota/Documents/python/timerange.csv'
 
-def getTimerange():
+def getTimerange(csvPath=r'', shotID=''):
+    logging.debug('get time range')
     f = open(csvPath, 'r')
-    # print f
     x = 0
-    shotID = "s15c02"
+    shotID = shotID
     timeShotID = ""
     timeStart = 0
     timeEnd = 0
 
     reader = csv.reader(f)
-    # header = next(reader)
+
     for row in reader:
         # print row
         if shotID in row:
@@ -29,15 +29,4 @@ def getTimerange():
 
     f.close()
 
-    return [timeStart,timeEnd]
-
-    # setTimeRange.....
-    # mc.setAttr('defaultRenderGlobals.startFrame', timeStart)
-    # mc.setAttr('defaultRenderGlobals.endFrame', timeEnd)
-
-mc.window(title='test', w=200)
-mc.columnLayout(adj=True)
-mc.button( label = 'csvTest', w=100, h=40, command='getTimerange()')
-
-mc.showWindow()
-
+    return [timeStart, timeEnd]

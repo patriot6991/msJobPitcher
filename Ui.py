@@ -11,6 +11,7 @@ import configSetting
 import importScenes
 import saveScene
 import searchFiles
+import timerange
 
 
 class UiClass(object):
@@ -34,6 +35,7 @@ class UiClass(object):
         self.deadlineSettingPath = r''
         self.minTime = ''
         self.maxTime = ''
+        self.timerangePath =r''
 
     def develop(self, *args):
         reload(myLogger)
@@ -45,6 +47,7 @@ class UiClass(object):
         reload(importScenes)
         reload(saveScene)
         reload(searchFiles)
+        reload(timerange)
 
     def jobNewScenes(self, *args):
         logging.debug('jobNewScenes')
@@ -122,7 +125,11 @@ class UiClass(object):
     def jobRenderSettings(self, *args):
         logging.debug('jobRenderSetting')
         self.renderSettingPath = mc.textField('f14', q=True, text=True)
-        RenderSetting.jsonRead()
+        self.minTime = mc.timeField('f18', q=True, v=True)
+        self.maxTime = mc.timeField('f19', q=True, v=True)
+        logging.debug('minTime is %s' % (self.minTime))
+        logging.debug('maxTime is %s' % (self.maxTime))
+        RenderSetting.jsonRead(path=self.renderSettingPath, start=self.minTime, end=self.maxTime)
 
     def jobAOVsSetting(self, *args):
         AOVsReader.AOVsRead()
@@ -142,11 +149,12 @@ class UiClass(object):
         mc.textField('f3', e=True, tx=self.cam_path)
         logging.debug('camera path is %s' %(self.cam_path))
 
-        self.anim_path = os.path.join(self.projectPath, 'scenes', '%s.render.v1.ma' %(self.shotID))
+        self.anim_path = os.path.join(self.projectPath, 'scenes', '%s.shot.v1.ma' %(self.shotID))
         mc.textField('f4', e=True, tx=self.anim_path)
         logging.debug('animation path is %s' %(self.anim_path))
 
-        print self.anim_path
+        self.jobGetTimeRange()
+
 
     def jobBuildRenderScene(self, *args):
         logging.debug('jobBuildRenderScene')
@@ -201,17 +209,15 @@ class UiClass(object):
         if mc.checkBox('c16', q=True, v=True) == True:
             self.jobSubmitDeadline()
 
-        self.jobTimeRange()
-
         if mc.checkBox('c17', q=True, v=True) == True:
             self.jobSaveScene()
 
-    def jobTimeRange(self, *args):
-        logging.debug('jobTimeRange')
-        self.minTime = mc.timeField('f18', q=True, v=True)
-        self.maxTime = mc.timeField('f19', q=True, v=True)
-        logging.debug('minTime is %s' %(self.minTime))
-        logging.debug('maxTime is %s' %(self.maxTime))
+    def jobGetTimeRange(self, *args):
+        logging.debug('jobGetTimeRange')
+        range_list = timerange.getTimerange(csvPath=self.timerangePath, shotID=self.shotID)
+        mc.timeField('f18', e=True, v=range_list[0])
+        mc.timeField('f19', e=True, v=range_list[1])
+
 
     def jobSaveScene(self, *args):
         logging.debug('jobSaveScene')
@@ -312,12 +318,14 @@ class UiClass(object):
         self.renderSettingPath = a.config_dict['renderSettingPath']
         self.AOVsSettingPath = a.config_dict['AOVsSettingPath']
         self.deadlineSettingPath = a.config_dict['deadlineSettingPath']
+        self.timerangePath = a.config_dict['timerangePath']
 
         logging.debug('projectPath --> %s' %(self.projectPath))
         logging.debug('stagePath --> %s' %(self.stagePath))
         logging.debug('renderSettingPath --> %s' %(self.renderSettingPath))
         logging.debug('AOVsSettingPath --> %s' %(self.AOVsSettingPath))
         logging.debug('deadlineSettingPath --> %s' %(self.deadlineSettingPath))
+        logging.debug('timerangePath --> %s' %(self.timerangePath))
 
     def ui(self, *args):
         logging.debug('shou UI')
