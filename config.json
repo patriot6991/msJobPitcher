@@ -1,7 +1,8 @@
 {
-  "projectPath": "",
-  "stagePath": "",
-  "renderSettingPath": "",
-  "AOVsSettingPath": "",
-  "deadlineSettingPath": ""
+  "projectPath": "//172.29.44.4/cg/ms06/renderProj",
+  "stagePath": "//172.29.44.4/cg/ms06/renderProj/scenes/stage/amorRoom.v1.mb",
+  "renderSettingPath": "//172.29.44.4/cg/ms06/msJobPitcher/renderSettings/renderjob.test.v1.json",
+  "AOVsSettingPath": "//172.29.44.4/cg/ms06/msJobPitcher/AOVs/aov.json",
+  "deadlineSettingPath": "//172.29.44.4/cg/ms06/msJobPitcher/deadline/hoge.json",
+  "timerangePath": "//172.29.44.4/cg/ms06/msJobPitcher/timerange.csv"
 }

@@ -3,12 +3,11 @@ import maya.mel as mel
 import json
 import logging
 
-path = r'\\172.29.44.4\cg\ms06\msJobPitcher\renderSettings\msTest.json'
 
-
-def jsonRead():
+def jsonRead(path=r'', start='', end=''):
     logging.debug('jsonRead')
     global dec
+    print path
     get = open(path)
     a = json.load(get)
     b = a['arnold']
@@ -16,10 +15,10 @@ def jsonRead():
     dec = b['defaultNodes']
     c = b['defaultRendererNodes']
     dec.update(c)
-    common()
+    common(start=start, end=end)
 
 
-def common():
+def common(start='', end=''):
     global dec
     # File output
     mc.setAttr('defaultRenderGlobals.imageFilePrefix', dec['defaultRenderGlobals.imageFilePrefix'], type='string')
@@ -62,8 +61,8 @@ def common():
         mc.setAttr('defaultRenderGlobals.extensionPadding', dec['defaultRenderGlobals.extensionPadding'])
 
     # Flame Range
-    mc.setAttr('defaultRenderGlobals.startFrame', 1)
-    mc.setAttr('defaultRenderGlobals.endFrame', 300)
+    mc.setAttr('defaultRenderGlobals.startFrame', start)
+    mc.setAttr('defaultRenderGlobals.endFrame', end)
     mc.setAttr('defaultRenderGlobals.byFrameStep', 1)
     mc.setAttr('defaultRenderGlobals.skipExistingFrames', dec['defaultRenderGlobals.skipExistingFrames'])
     mc.setAttr('defaultRenderGlobals.modifyExtension', 0)
