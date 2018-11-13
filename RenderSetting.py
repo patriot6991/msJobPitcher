@@ -155,8 +155,6 @@ def arnoldRenderer():
     mc.setAttr('defaultArnoldRenderOptions.textureDiffuseBlur', dec['defaultArnoldRenderOptions.textureDiffuseBlur'])
     mc.setAttr('defaultArnoldRenderOptions.textureSpecularBlur', dec['defaultArnoldRenderOptions.textureSpecularBlur'])
 
-    setCam()
-
 def setCam(shot=''):
     cam = []
     scam = mc.listRelatives(shot, typ='camera')
