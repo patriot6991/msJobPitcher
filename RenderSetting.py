@@ -157,9 +157,8 @@ def arnoldRenderer():
 
     setCam()
 
-def setCam():
+def setCam(shot=''):
     cam = []
-    shot = 's14c02'
     scam = mc.listRelatives(shot, typ='camera')
     cam = mc.ls(typ='camera')
     for i in cam:
