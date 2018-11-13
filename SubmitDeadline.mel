@@ -8,5 +8,4 @@ AddLongAttribute( "deadlineJobPriority" );
 setAttr defaultRenderGlobals.deadlineJobPriority 50;
 
 
-SubmitJobToDeadline()
-DeadlineSubmitterOnOk;
+SubmitJobToDeadline();
