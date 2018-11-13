@@ -154,3 +154,21 @@ def arnoldRenderer():
     mc.setAttr('defaultArnoldRenderOptions.textureMaxOpenFiles', dec['defaultArnoldRenderOptions.textureMaxOpenFiles'])
     mc.setAttr('defaultArnoldRenderOptions.textureDiffuseBlur', dec['defaultArnoldRenderOptions.textureDiffuseBlur'])
     mc.setAttr('defaultArnoldRenderOptions.textureSpecularBlur', dec['defaultArnoldRenderOptions.textureSpecularBlur'])
+
+    setCam()
+
+def setCam():
+    cam = []
+    shot = 's14c02'
+    scam = mc.listRelatives(shot, typ='camera')
+    cam = mc.ls(typ='camera')
+    for i in cam:
+        if scam[0] in i:
+            mc.setAttr('{}.renderable'.format(i), 1)
+        else:
+            mc.setAttr('{}.renderable'.format(i), 0)
+
+
+
+
+
