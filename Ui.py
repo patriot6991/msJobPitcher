@@ -132,9 +132,10 @@ class UiClass(object):
         RenderSetting.jsonRead(path=self.renderSettingPath, start=self.minTime, end=self.maxTime)
 
     def jobAOVsSetting(self, *args):
-        AOVsReader.AOVsRead()
         logging.debug('jobAOVsSetting')
         self.AOVsSettingPath = mc.textField('f15', q=True, text=True)
+        AOVsReader.AOVsRead(path=self.AOVsSettingPath)
+        print self.AOVsSettingPath
 
     def jobSubmitDeadline(self, *args):
         logging.debug('jobSubmitDeadline')
