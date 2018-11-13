@@ -2,10 +2,8 @@ import maya.cmds as mc
 import json
 import logging
 
-path = r'\\172.29.44.4\cg\ms06\msJobPitcher\AOVs\aov.json'
 
-
-def AOVsRead():
+def AOVsRead(path=r''):
     logging.debug('AOVsRead')
     get = open(path)
     a = json.load(get)
