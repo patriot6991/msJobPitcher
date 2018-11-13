@@ -68,12 +68,11 @@ def common(start='', end=''):
     mc.setAttr('defaultRenderGlobals.modifyExtension', 0)
 
     # renderableCamera
-    mc.setAttr('perspShape.renderable', 1)
+    mc.setAttr('perspShape.renderable', 0)
     mc.setAttr('topShape.renderable', 0)
     mc.setAttr('frontShape.renderable', 0)
     mc.setAttr('sideShape.renderable', 0)
-    mc.setAttr('perspShape.renderable', 1)
-    mc.setAttr('perspShape.mask', 1)
+    mc.setAttr('perspShape.mask', 0)
     mc.setAttr('perspShape.depth', 0)
 
     # imageSize

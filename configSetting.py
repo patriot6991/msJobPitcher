@@ -9,6 +9,5 @@ class ReadJson(object):
     def read(self, *args):
         logging.debug('config reading')
         path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.json')
-        print path
         f =open(path)
         self.config_dict = json.load(f)

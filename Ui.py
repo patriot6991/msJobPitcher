@@ -1,8 +1,10 @@
 # coding:UTF-8
 import maya.cmds as mc
+import maya.mel as mel
 import os
 import logging
 import myLogger
+import time
 import RenderSetting
 import AOVsReader
 import browsFile
@@ -135,11 +137,13 @@ class UiClass(object):
         logging.debug('jobAOVsSetting')
         self.AOVsSettingPath = mc.textField('f15', q=True, text=True)
         AOVsReader.AOVsRead(path=self.AOVsSettingPath)
-        print self.AOVsSettingPath
 
     def jobSubmitDeadline(self, *args):
         logging.debug('jobSubmitDeadline')
-        self.deadlineSettingPath = mc.textField('f16', q=True, text=True)
+        mel.eval('source "C:/Users/user/PycharmProjects/msJobPitcher/SubmitDeadline.mel";')
+        time.sleep(7)
+        mel.eval("DeadlineSubmitterOnOk;")
+
 
     def jobSetShotID(self, *args):
         logging.debug('jobSetShotID')
@@ -155,7 +159,7 @@ class UiClass(object):
         logging.debug('animation path is %s' %(self.anim_path))
 
         self.jobGetTimeRange()
-
+        RenderSetting.setRendableCamera(self.shotID)
 
     def jobBuildRenderScene(self, *args):
         logging.debug('jobBuildRenderScene')
@@ -207,11 +211,11 @@ class UiClass(object):
         if mc.checkBox('c15', q=True, v=True) == True:
             self.jobAOVsSetting()
 
-        if mc.checkBox('c16', q=True, v=True) == True:
-            self.jobSubmitDeadline()
-
         if mc.checkBox('c17', q=True, v=True) == True:
             self.jobSaveScene()
+
+        if mc.checkBox('c16', q=True, v=True) == True:
+            self.jobSubmitDeadline()
 
     def jobGetTimeRange(self, *args):
         logging.debug('jobGetTimeRange')
@@ -318,14 +322,12 @@ class UiClass(object):
         self.stagePath = a.config_dict['stagePath']
         self.renderSettingPath = a.config_dict['renderSettingPath']
         self.AOVsSettingPath = a.config_dict['AOVsSettingPath']
-        self.deadlineSettingPath = a.config_dict['deadlineSettingPath']
         self.timerangePath = a.config_dict['timerangePath']
 
         logging.debug('projectPath --> %s' %(self.projectPath))
         logging.debug('stagePath --> %s' %(self.stagePath))
         logging.debug('renderSettingPath --> %s' %(self.renderSettingPath))
         logging.debug('AOVsSettingPath --> %s' %(self.AOVsSettingPath))
-        logging.debug('deadlineSettingPath --> %s' %(self.deadlineSettingPath))
         logging.debug('timerangePath --> %s' %(self.timerangePath))
 
     def ui(self, *args):
@@ -389,16 +391,14 @@ class UiClass(object):
         c15 = mc.checkBox('c15', l='AOVs Settings', v=1)
         f15 = mc.textField('f15', w=500, h=20, text=self.AOVsSettingPath)
         b15 = mc.button(l='Brows', w=50, h=20, c=self.browsAOVsSettings)
-        c16 = mc.checkBox('c16', l='Deadline Settings', v=0, en=False)
-        f16 = mc.textField('f16', w=500, h=20, text=self.deadlineSettingPath, en=False)
-        b16 = mc.button(l='Brows', w=50, h=20, c=self.browsDeadlineSettings, en=False)
+        c16 = mc.checkBox('c16', l='Submit to Deadline10', v=1)
         t1 = mc.text(l='shotID :')
         f17 = mc.textField('f17', w=110, h=20, text='sXXcXX')
         t2 = mc.text(l='time range')
         f18 = mc.timeField('f18', w=50, h=20, v=1, s=1)
         f19 = mc.timeField('f19', w=50, h=20, v=100, s=1)
-        b17 = mc.button(l='Set shotID', w=180, h=70, c=self.jobSetShotID)
-        b18 = mc.button(l='Build Render Scene', w=300, h=70, c=self.jobBuildRenderScene)
+        b17 = mc.button(l='Set shotID', w=180, h=90, c=self.jobSetShotID)
+        b18 = mc.button(l='Build Render Scene', w=300, h=90, c=self.jobBuildRenderScene)
         c17 = mc.checkBox('c17', l='save Scene', v=1)
 
         mc.formLayout(form, edit=True, attachForm=[
@@ -448,15 +448,13 @@ class UiClass(object):
             (f15, 'top', 385), (f15, 'left', 130),
             (b15, 'top', 385), (b15, 'left', 640),
             (c16, 'top', 410), (c16, 'left', 10),
-            (f16, 'top', 410), (f16, 'left', 130),
-            (b16, 'top', 410), (b16, 'left', 640),
             (t1, 'top', 438), (t1, 'left', 10),
             (f17, 'top', 435), (f17, 'left', 80),
             (t2, 'top', 463), (t2, 'left', 10),
             (f18, 'top', 460), (f18, 'left', 80),
             (f19, 'top', 460), (f19, 'left', 140),
-            (b17, 'top', 435), (b17, 'left', 200),
-            (b18, 'top', 435), (b18, 'left', 390),
+            (b17, 'top', 415), (b17, 'left', 200),
+            (b18, 'top', 415), (b18, 'left', 390),
             (cLog, 'top', 485), (cLog, 'left', 10),
             (c17, 'top', 485), (c17, 'left', 80),
         ])
