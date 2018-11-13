@@ -7,7 +7,6 @@ import logging
 def jsonRead(path=r'', start='', end=''):
     logging.debug('jsonRead')
     global dec
-    print path
     get = open(path)
     a = json.load(get)
     b = a['arnold']
