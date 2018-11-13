@@ -7,7 +7,6 @@ import logging
 def jsonRead(path=r'', start='', end=''):
     logging.debug('jsonRead')
     global dec
-    print path
     get = open(path)
     a = json.load(get)
     b = a['arnold']
@@ -155,11 +154,8 @@ def arnoldRenderer():
     mc.setAttr('defaultArnoldRenderOptions.textureDiffuseBlur', dec['defaultArnoldRenderOptions.textureDiffuseBlur'])
     mc.setAttr('defaultArnoldRenderOptions.textureSpecularBlur', dec['defaultArnoldRenderOptions.textureSpecularBlur'])
 
-    setCam()
-
-def setCam():
+def setCam(shot=''):
     cam = []
-    shot = 's14c02'
     scam = mc.listRelatives(shot, typ='camera')
     cam = mc.ls(typ='camera')
     for i in cam:

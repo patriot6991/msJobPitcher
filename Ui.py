@@ -140,6 +140,7 @@ class UiClass(object):
 
     def jobSubmitDeadline(self, *args):
         logging.debug('jobSubmitDeadline')
+        RenderSetting.setCam(shot=self.shotID)
         mel.eval('source "C:/Users/user/PycharmProjects/msJobPitcher/SubmitDeadline.mel";')
         time.sleep(7)
         mel.eval("DeadlineSubmitterOnOk;")
@@ -154,7 +155,7 @@ class UiClass(object):
         mc.textField('f3', e=True, tx=self.cam_path)
         logging.debug('camera path is %s' %(self.cam_path))
 
-        self.anim_path = os.path.join(self.projectPath, 'scenes', '%s.shot.v1.ma' %(self.shotID))
+        self.anim_path = os.path.join(self.projectPath, 'scenes', 'shot', '%s.shot.v1.ma' %(self.shotID))
         mc.textField('f4', e=True, tx=self.anim_path)
         logging.debug('animation path is %s' %(self.anim_path))
 

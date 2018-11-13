@@ -38,15 +38,28 @@ sys.path.append( 'filePath\msJobPitcher' )
 ### Render Settings & AOVsSetting
 `config.json` で指定したデフォルトの設定ファイルをインポートします。
 
-### Deadline Setting(開発中)
-`config.json` で指定したデフォルトの設定ファイルをインポートし、レンダージョブをDeadline10に送信します。
+### Submit to Deadline10
+レンダージョブをDeadline10に送信します。レンダリングカメラはshotIDのカメラのみがrenderbleに設定されます。
 
 この機能を利用するには事前にDeadline10のセットアップを済ませる必要があります。
 
 また、プロジェクトパスをDeadline10が読み書き可能なネットワークドライブにする必要があります。
 
-### time renge(開発中)
+現在は下記項目を設定します。
+- Department --> ms06
+- Group --> normal_node
+- Priority --> 50
+
+また下記項目はレンダー設定を引き継ぎます。
+- Job Name
+- Frame List
+- Project Path
+- Output Path
+
+### time renge
 カットのタイムレンジを指定します。ここで設定したレンジがレンダージョブに設定されます。
+
+timecode.csvにshotIDごとのタイムレンジが存在する場合はそちらをset shotID時に代入します。
 
 ### shotID
 カット事の固有IDを設定します。プロジェクトの命名規則に従ってください。
