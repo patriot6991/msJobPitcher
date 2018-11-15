@@ -37,7 +37,8 @@ class UiClass(object):
         self.deadlineSettingPath = r''
         self.minTime = ''
         self.maxTime = ''
-        self.timerangePath =r''
+        self.timerangePath = r''
+        self.submitDeadlineMelPath = r''
 
     def develop(self, *args):
         reload(myLogger)
@@ -141,10 +142,10 @@ class UiClass(object):
     def jobSubmitDeadline(self, *args):
         logging.debug('jobSubmitDeadline')
         RenderSetting.setCam(shot=self.shotID)
-        mel.eval('source "C:/Users/user/PycharmProjects/msJobPitcher/SubmitDeadline.mel";')
+
+        mel.eval('source "{}";'.format(self.submitDeadlineMelPath))
         time.sleep(7)
         mel.eval("DeadlineSubmitterOnOk;")
-
 
     def jobSetShotID(self, *args):
         logging.debug('jobSetShotID')
@@ -329,12 +330,15 @@ class UiClass(object):
         self.renderSettingPath = a.config_dict['renderSettingPath']
         self.AOVsSettingPath = a.config_dict['AOVsSettingPath']
         self.timerangePath = a.config_dict['timerangePath']
+        self.submitDeadlineMelPath = a.config_dict['submitDeadlineMelPath']
 
         logging.debug('projectPath --> %s' %(self.projectPath))
         logging.debug('stagePath --> %s' %(self.stagePath))
         logging.debug('renderSettingPath --> %s' %(self.renderSettingPath))
         logging.debug('AOVsSettingPath --> %s' %(self.AOVsSettingPath))
         logging.debug('timerangePath --> %s' %(self.timerangePath))
+        logging.debug('submitDeadlineMelPath --> %s' % (self.submitDeadlineMelPath))
+
 
     def ui(self, *args):
         logging.debug('shou UI')
