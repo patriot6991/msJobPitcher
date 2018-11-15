@@ -151,16 +151,19 @@ class UiClass(object):
         self.shotID = mc.textField('f17', q=True, text=True)
         logging.debug('shotID is %s' % self.shotID)
 
-        self.cam_path = os.path.join(self.projectPath, 'scenes', 'cam', '%s.cam.v1.fbx' %(self.shotID))
+        cam_path = os.path.join(self.projectPath, 'scenes', 'cam')
+        cam_cnt = searchFiles.searchFiles(shotID=self.shotID, path=cam_path)
+        self.cam_path = os.path.join(self.projectPath, 'scenes', 'cam', '%s.cam.v%s.fbx' %(self.shotID, cam_cnt))
         mc.textField('f3', e=True, tx=self.cam_path)
         logging.debug('camera path is %s' %(self.cam_path))
 
-        self.anim_path = os.path.join(self.projectPath, 'scenes', 'shot', '%s.shot.v1.ma' %(self.shotID))
+        anim_path = os.path.join(self.projectPath, 'scenes', 'shot')
+        anim_cnt = searchFiles.searchFiles(shotID=self.shotID, path=anim_path)
+        self.anim_path = os.path.join(self.projectPath, 'scenes', 'shot', '%s.shot.v%s.ma' %(self.shotID, anim_cnt))
         mc.textField('f4', e=True, tx=self.anim_path)
         logging.debug('animation path is %s' %(self.anim_path))
 
         self.jobGetTimeRange()
-        RenderSetting.setRendableCamera(self.shotID)
 
     def jobBuildRenderScene(self, *args):
         logging.debug('jobBuildRenderScene')
@@ -211,6 +214,8 @@ class UiClass(object):
 
         if mc.checkBox('c15', q=True, v=True) == True:
             self.jobAOVsSetting()
+
+        RenderSetting.setCam(self.shotID)
 
         if mc.checkBox('c17', q=True, v=True) == True:
             self.jobSaveScene()
