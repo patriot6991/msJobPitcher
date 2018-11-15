@@ -1,7 +1,7 @@
 {
   "projectPath": "//172.29.44.4/cg/ms06/renderProj",
   "stagePath": "//172.29.44.4/cg/ms06/renderProj/scenes/stage/amorRoom.v1.mb",
-  "renderSettingPath": "//172.29.44.4/cg/ms06/msJobPitcher/renderSettings/armorroom.json",
-  "AOVsSettingPath": "//172.29.44.4/cg/ms06/msJobPitcher/AOVs/amorroomAOV.json",
+  "renderSettingPath": "//172.29.44.4/cg/ms06/msJobPitcher/renderSettings/RenderDefault.json",
+  "AOVsSettingPath": "//172.29.44.4/cg/ms06/msJobPitcher/AOVs/defaultAOV.json",
   "timerangePath": "//172.29.44.4/cg/ms06/msJobPitcher/timerange.csv"
 }
