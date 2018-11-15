@@ -82,6 +82,9 @@ def common(start='', end=''):
     mc.setAttr('defaultResolution.dotsPerInch', dec['defaultResolution.dotsPerInch'])
     mc.setAttr('defaultResolution.pixelDensityUnits', dec['defaultResolution.pixelDensityUnits'])
 
+    # Frame/Animation ext
+    mel.eval('setMayaSoftwareFrameExt("3", 0);')
+
     arnoldRenderer()
 
 
