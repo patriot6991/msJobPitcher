@@ -1,8 +1,11 @@
 AddStringAttribute( "deadlineDepartment" );
 setAttr defaultRenderGlobals.deadlineDepartment -type "string" "ms06";
 
+AddStringAttribute( "deadlineJobComment" );
+setAttr defaultRenderGlobals.deadlineJobComment -type "string" "Submit from msJobPitcher";
+
 AddStringAttribute( "deadlineGroup" );
-setAttr defaultRenderGlobals.deadlineGroup -type "string" "normal_node";
+setAttr defaultRenderGlobals.deadlineGroup -type "string" "none";
 
 AddLongAttribute( "deadlineJobPriority" );
 setAttr defaultRenderGlobals.deadlineJobPriority 50;
