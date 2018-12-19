@@ -64,7 +64,7 @@ timecode.csvにshotIDごとのタイムレンジが存在する場合はそち�
 ### shotID
 カット事の固有IDを設定します。プロジェクトの命名規則に従ってください。
 
-標準では `shotID.shot.v1.ma` のアニメーションデータと `shotID.cam.v1.fbx` のカメラデータを参照するよう自動的にファイルパスをセットします。
+標準では `shotID.shot.vX.ma` のアニメーションデータと `shotID.cam.vX.fbx` のカメラデータを参照するよう自動的にファイルパスをセットします。
 
 ### save Scene
 ビルドしたシーンをプロジェクトパスのscenes直下に `shotID.render.vX.ma` として保存します。
