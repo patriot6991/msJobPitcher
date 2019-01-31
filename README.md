@@ -1,6 +1,7 @@
 # msJobPitcher
 MS用のレンダーシーン構築＆レンダージョブのサブミットツールです。
-![リリース記事](https://qiita.com/paty-6991/items/3c779d21264e9f2ae65f)
+
+[リリース記事](https://qiita.com/paty-6991/items/3c779d21264e9f2ae65f)
 
 起動コマンド
 ```python
